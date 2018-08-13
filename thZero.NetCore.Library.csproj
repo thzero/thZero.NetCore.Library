@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>thZero.NetCore.Library</AssemblyName>
+		<PackageId>thZero.NetCore.Library</PackageId>
+		<PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<Description></Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</PackageLicenseUrl>
+		<RepositoryUrl>https://github.com/thzero/thZero.NetCore.Library</RepositoryUrl>
+		<RepositoryType>GitHub</RepositoryType>
+		<PackageProjectUrl>https://github.com/thzero/thZero.NetCore.Library</PackageProjectUrl>
+		<Authors>thZero.com</Authors>
+		<Copyright></Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Crc32.NET" Version="1.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+	</ItemGroup>
+
+</Project>
