@@ -25,10 +25,8 @@ namespace thZero.Services
 	public interface IServiceJson : IService
 	{
 		#region Methods
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		T Deserialize<T>(string data);
 		object Deserialize(string data, Type type);
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		T Deserialize<T>(Stream stream);
 		object Deserialize(Stream stream, Type type);
 		object DeserializeObject(string data);
