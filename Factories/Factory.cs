@@ -189,7 +189,6 @@ namespace thZero
 			Initialize<TFactory>();
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
 		public IServiceLog RetrieveLogger(Type type)
 		{
 			Enforce.AgainstNull(() => type);
@@ -197,7 +196,6 @@ namespace thZero
 			return LogFactory.RetrieveLogger(type);
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
 		public IServiceLog RetrieveLogger(string typeName)
 		{
 			Enforce.AgainstNull(() => typeName);
