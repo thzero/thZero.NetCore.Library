@@ -1,5 +1,5 @@
 ﻿/* ------------------------------------------------------------------------- *
-thZero.NetCore.Library
+thZero.NetCore.Library.Asp
 Copyright (C) 2016-2018 thZero.com
 
 <development [at] thzero [dot] com>
@@ -21,13 +21,7 @@ using System;
 
 namespace thZero.Services
 {
-	public class ServiceJsonSettings : ServiceBase, IServiceJsonSettings
+    public interface IServiceCircuitBreaker : IService
     {
-		#region Public Properties
-		public object ContractResolver { get; set; }
-		public object DefaultValueHandling { get; set; }
-		public object MissingMemberHandling { get; set; }
-		public object NullValueHandling { get; set; }
-		#endregion
-	}
+    }
 }

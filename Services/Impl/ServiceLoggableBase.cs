@@ -1,5 +1,5 @@
 ﻿/* ------------------------------------------------------------------------- *
-thZero.NetCore.Library
+thZero.NetCore.Library.Asp
 Copyright (C) 2016-2018 thZero.com
 
 <development [at] thzero [dot] com>
@@ -19,15 +19,19 @@ limitations under the License.
 
 using System;
 
+using Microsoft.Extensions.Logging;
+
 namespace thZero.Services
 {
-	public class ServiceJsonSettings : ServiceBase, IServiceJsonSettings
+    public abstract class ServiceLoggableBase<TService> : ServiceBase
     {
-		#region Public Properties
-		public object ContractResolver { get; set; }
-		public object DefaultValueHandling { get; set; }
-		public object MissingMemberHandling { get; set; }
-		public object NullValueHandling { get; set; }
-		#endregion
-	}
+        public ServiceLoggableBase(ILogger<TService> logger)
+        {
+            Logger = logger;
+        }
+
+        #region Protected Properties
+        protected ILogger<TService> Logger { get; private set; }
+        #endregion
+    }
 }

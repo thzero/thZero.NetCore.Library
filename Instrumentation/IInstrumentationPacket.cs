@@ -1,5 +1,5 @@
 ﻿/* ------------------------------------------------------------------------- *
-thZero.NetCore.Library
+thZero.NetCore.Library.Asp
 Copyright (C) 2016-2018 thZero.com
 
 <development [at] thzero [dot] com>
@@ -19,15 +19,10 @@ limitations under the License.
 
 using System;
 
-namespace thZero.Services
+namespace thZero.AspNetCore
 {
-	public class ServiceJsonSettings : ServiceBase, IServiceJsonSettings
+    public interface IInstrumentationPacket
     {
-		#region Public Properties
-		public object ContractResolver { get; set; }
-		public object DefaultValueHandling { get; set; }
-		public object MissingMemberHandling { get; set; }
-		public object NullValueHandling { get; set; }
-		#endregion
-	}
+        Guid Correlation { get; set; }
+    }
 }

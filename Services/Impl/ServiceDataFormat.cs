@@ -21,8 +21,8 @@ using System;
 
 namespace thZero.Services
 {
-	public class ServiceDataFormat : IServiceDataFormat
-	{
+	public class ServiceDataFormat : ServiceBase, IServiceDataFormat
+    {
 		#region Public Methods
 		public virtual string DisplayBool(object value)
 		{

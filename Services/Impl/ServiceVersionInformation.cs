@@ -21,8 +21,8 @@ using System;
 
 namespace thZero.Services
 {
-	public sealed class ServiceVersionInformation : IServiceVersionInformation
-	{
+	public sealed class ServiceVersionInformation : ServiceBase, IServiceVersionInformation
+    {
 		#region Public Properties
 		public string ApplicationName { get; set; }
 

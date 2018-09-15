@@ -22,8 +22,8 @@ using System.Globalization;
 
 namespace thZero.Services
 {
-	public sealed class ServiceLocalizationBasic : IServiceLocalization
-	{
+	public sealed class ServiceLocalizationBasic : ServiceBase, IServiceLocalization
+    {
 		private static readonly thZero.Services.IServiceLog log = thZero.Factory.Instance.RetrieveLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		#region Public Methods
