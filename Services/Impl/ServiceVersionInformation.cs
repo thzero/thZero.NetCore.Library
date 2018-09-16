@@ -27,10 +27,9 @@ namespace thZero.Services
 		public string ApplicationName { get; set; }
 
 		public DateTime BuildDate { get; set; }
-		//public string BuildDateFormatted { get { return string.Format(BuildDateFormat, BuildDate); } }
         public string BuildDateFormatted => string.Format(BuildDateFormat, BuildDate);
 
-        public Version Version { get; set; }
+        public Version Version { get => _version; set => _version = value; }
 		public string VersionFormatted
 		{
 			get
