@@ -594,35 +594,17 @@ namespace thZero.Utilities
 		}
 
 		#region Public Properties
-		public long ElapsedTicks
-		{
-			get { return Watch.ElapsedTicks; }
-		}
+        public long ElpasedTicks => Watch.ElapsedTicks;
 
-		public long ElapsedTicksFrequencyMilliseconds
-		{
-			get { return System.Diagnostics.Stopwatch.Frequency / 1000; }
-		}
+        public long ElapsedTicksFrequencyMilliseconds => System.Diagnostics.Stopwatch.Frequency / 1000;
 
-		public long ElapsedTicksFrequencySeconds
-		{
-			get { return System.Diagnostics.Stopwatch.Frequency; }
-		}
+        public long ElapsedTicksFrequencySeconds => System.Diagnostics.Stopwatch.Frequency;
 
-		public long ElapsedMilliseconds
-		{
-			get { return Watch.ElapsedMilliseconds; }
-		}
+        public long ElapsedMilliseconds => Watch.ElapsedMilliseconds;
 
-		public TimeSpan ElapsedTime
-		{
-			get { return Watch.Elapsed; }
-		}
+        public TimeSpan ElapsedTime => Watch.Elapsed;
 
-		public long ElapsedTimeTicks
-		{
-			get { return TimeSpan.TicksPerMillisecond; }
-		}
+        public long ElapsedTimeTicks => TimeSpan.TicksPerMillisecond;
 
 		public string ElapsedTimeDisplay
 		{

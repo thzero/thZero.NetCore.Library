@@ -155,18 +155,14 @@ namespace thZero.Services
 		public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder, CultureInfo defaultCulture)
 		{
 		}
-		#endregion
+        #endregion
 
-		#endregion
+        #endregion
 
-		#region Public Properties
-		public CultureInfo DefaultCulture
-		{
-			get { return _defaultCulture; }
-			set { _defaultCulture = value; }
-		}
+        #region Public Properties
+        public CultureInfo DefaultCulture { get; set; } = CultureInfo.CurrentCulture;
 
-		public string DefaultResource
+        public string DefaultResource
 		{
 			get { return _defaultResource; }
 			set { _defaultResource = value; }
@@ -183,14 +179,10 @@ namespace thZero.Services
 			get;
 			set;
 		}
-		#endregion
+        #endregion
 
-		#region Private Methods
-		#endregion
-
-		#region Fields
-		private CultureInfo _defaultCulture = CultureInfo.CurrentCulture;
-		private static string _defaultResource = "strings";
+        #region Fields
+        private static string _defaultResource = "strings";
 		#endregion
 	}
 }

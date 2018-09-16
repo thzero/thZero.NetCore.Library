@@ -266,18 +266,14 @@ namespace thZero.Services
 		{
 			return DisplayTimeCore(value, false);
 		}
-		#endregion
+        #endregion
 
-		#region Public Properties
-		public bool PerformEncoding
-		{
-			get { return _performEncoding; }
-			set { _performEncoding = value; }
-		}
-		#endregion
+        #region Public Properties
+        public bool PerformEncoding { get; set; } = true;
+        #endregion
 
-		#region Protected Methods
-		protected virtual string DisplayBoolCore(object value)
+        #region Protected Methods
+        protected virtual string DisplayBoolCore(object value)
 		{
 			if (!(value is bool))
 				return string.Empty;
@@ -675,14 +671,11 @@ namespace thZero.Services
 		{
 			get { return 97; }
 		}
-		#endregion
 
-		#region Fields
-		private bool _performEncoding = true;
-		#endregion
+        #endregion
 
-		#region Constants
-		private const string Blank = "_blank";
+        #region Constants
+        private const string Blank = "_blank";
 		private const string Break = "<br/>";
 		private const string CurrencyFormat = "{0:C}";
 		private const char DecimalChar = '#';

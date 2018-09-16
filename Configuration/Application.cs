@@ -36,15 +36,7 @@ namespace thZero.Configuration
 	{
 		#region Public Properties
 		public string CopyrightDate { get; set; }
-		public ICollection<ApplicationCulture> Cultures
-		{
-			get { return _cultures; }
-			set { _cultures = value; }
-		}
-		#endregion
-
-		#region Fields
-		private ICollection<ApplicationCulture> _cultures = new List<ApplicationCulture>();
-		#endregion
-	}
+        public ICollection<ApplicationCulture> Cultures { get; set; } = new List<ApplicationCulture>();
+        #endregion
+    }
 }
