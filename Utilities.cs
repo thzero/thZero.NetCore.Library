@@ -727,30 +727,21 @@ namespace thZero.Utilities.Services
 	public static class LoggerFactory
 	{
 		#region Public Properties
-		public static ILoggerFactory Instance
-		{
-			get { return Factory.Instance.Retrieve<ILoggerFactory>(); }
-		}
+		public static ILoggerFactory Instance => Factory.Instance.Retrieve<ILoggerFactory>();
 		#endregion
 	}
 
 	public static class Json
 	{
-		#region Public Properties
-		public static IServiceJson Instance
-		{
-			get { return Factory.Instance.Retrieve<IServiceJson>(); }
-		}
+        #region Public Properties
+        public static IServiceJson Instance => Factory.Instance.Retrieve<IServiceJson>();
 		#endregion
 	}
 
 	public static class Version
 	{
 		#region Public Properties
-		public static IServiceVersionInformation Instance
-		{
-			get { return Factory.Instance.Retrieve<IServiceVersionInformation>(); }
-		}
+		public static IServiceVersionInformation Instance => Factory.Instance.Retrieve<IServiceVersionInformation>();
 		#endregion
 	}
 }
