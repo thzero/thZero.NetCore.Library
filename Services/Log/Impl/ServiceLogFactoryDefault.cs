@@ -24,10 +24,10 @@ using Microsoft.Extensions.Logging;
 
 namespace thZero.Services.Log
 {
-	/// <summary>
-	/// Creates a logger, that logs all messages to: /dev/null
-	/// </summary>
-	public class ServiceLogFactoryDefault : IServiceLogFactory
+    /// <summary>
+    /// Creates a logger, that logs all messages to: ILogger
+    /// </summary>
+    public class ServiceLogFactoryDefault : IServiceLogFactory
 	{
 		public void Initialize(params object[] args)
 		{
@@ -49,7 +49,7 @@ namespace thZero.Services.Log
 	}
 
 	/// <summary>
-	/// Default logger is to System.Diagnostics.Debug.Print
+	/// Default logger is to the ILogger
 	/// </summary>
 	public class ProviderLogDefault : ServiceLogBase, IServiceLog
 	{
