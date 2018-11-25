@@ -19,12 +19,289 @@ limitations under the License.
 
 using System;
 
+using Microsoft.Extensions.Logging;
+
 namespace thZero.Services
 {
-	public class ServiceDataFormat : ServiceBase, IServiceDataFormat
+    public class ServiceDataFormatFactory : Internal.ServiceDataFormatBase<ServiceDataFormatFactory>, IServiceDataFormat
     {
-		#region Public Methods
-		public virtual string DisplayBool(object value)
+        private static readonly thZero.Services.IServiceLog log = thZero.Factory.Instance.RetrieveLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public ServiceDataFormatFactory() : base(log, null)
+        {
+        }
+    }
+
+    public class ServiceDataFormat : ServiceLoggableBase<ServiceDataFormat>, IServiceDataFormat
+    {
+        public ServiceDataFormat(ILogger<ServiceDataFormat> logger) : base(logger)
+        {
+            _instance = new Internal.ServiceDataFormatBase<ServiceDataFormat>(null, logger);
+        }
+
+        #region Public Methods
+        public virtual string DisplayBool(object value)
+        {
+            return _instance.DisplayBool(value);
+        }
+
+        public virtual int DisplayBoolAsBit(object value)
+        {
+            return _instance.DisplayBoolAsBit(value);
+        }
+
+        public virtual string DisplayCurrency(object value)
+        {
+            return _instance.DisplayCurrency(value);
+        }
+
+        public virtual string DisplayDate(object value)
+        {
+            return _instance.DisplayDate(value);
+        }
+
+        public virtual string DisplayDate(object value1, object value2)
+        {
+            return _instance.DisplayDate(value1, value2);
+        }
+
+        public virtual string DisplayDateLong(object value)
+        {
+            return _instance.DisplayDateLong(value);
+        }
+
+        public virtual string DisplayDateLong(object value1, object value2)
+        {
+            return _instance.DisplayDateLong(value1, value2);
+        }
+
+        public virtual string DisplayDateTime(object value)
+        {
+            return _instance.DisplayDateTime(value, false);
+        }
+
+        public virtual string DisplayDateTime(object value1, object value2)
+        {
+            return _instance.DisplayDateTime(value1, value2);
+        }
+
+        public virtual string DisplayDateTimeWithSeconds(object value)
+        {
+            return _instance.DisplayDateTime(value, true);
+        }
+
+        public virtual string DisplayDecimal(decimal? value, int places)
+        {
+            return _instance.DisplayDecimal(value, places, DisplayRoundDirection.Normal);
+        }
+
+        public virtual string DisplayDecimal(decimal? value, int places, decimal defaultValue)
+        {
+            return _instance.DisplayDecimal(value, places, DisplayRoundDirection.Normal, defaultValue);
+        }
+
+        public virtual string DisplayDecimal(decimal? value, int places, DisplayRoundDirection round)
+        {
+            return _instance.DisplayDecimal(value, places, round);
+        }
+
+        public virtual string DisplayDecimal(decimal? value, int places, DisplayRoundDirection round, decimal defaultValue)
+        {
+            return _instance.DisplayDecimal(value, places, round, defaultValue);
+        }
+
+        public virtual string DisplayDecimalDebug(decimal? value)
+        {
+            return _instance.DisplayDecimalDebug(value, DisplayRoundDirection.Normal);
+        }
+
+        public virtual string DisplayDecimalDebug(decimal? value, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalDebug(value, DisplayRoundDirection.Normal, defaultValue);
+        }
+
+        public virtual string DisplayDecimalDebug(decimal? value, DisplayRoundDirection round)
+        {
+            return _instance.DisplayDecimalDebug(value, round);
+        }
+
+        public virtual string DisplayDecimalDebug(decimal? value, DisplayRoundDirection round, decimal defaultValue)
+        {
+            return DisplayDecimalDebug(value, round, defaultValue);
+        }
+
+        public virtual string DisplayDecimalHundreds(decimal? value)
+        {
+            return _instance.DisplayDecimalHundreds(value);
+        }
+
+        public virtual string DisplayDecimalHundreds(decimal? value, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalHundreds(value, DisplayRoundDirection.Normal, defaultValue);
+        }
+
+        public virtual string DisplayDecimalHundreds(decimal? value, DisplayRoundDirection round)
+        {
+            return _instance.DisplayDecimalHundreds(value, round);
+        }
+
+        public virtual string DisplayDecimalHundreds(decimal? value, DisplayRoundDirection round, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalHundreds(value, round, defaultValue);
+        }
+
+        public virtual string DisplayDecimalTens(decimal? value)
+        {
+            return _instance.DisplayDecimalTens(value);
+        }
+
+        public virtual string DisplayDecimalTens(decimal? value, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalTens(value, DisplayRoundDirection.Normal, defaultValue);
+        }
+
+        public virtual string DisplayDecimalTens(decimal? value, DisplayRoundDirection round)
+        {
+            return _instance.DisplayDecimalTens(value, round);
+        }
+
+        public virtual string DisplayDecimalTens(decimal? value, DisplayRoundDirection round, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalTens(value, round, defaultValue);
+        }
+
+        public virtual string DisplayDecimalThousands(decimal? value)
+        {
+            return _instance.DisplayDecimalThousands(value);
+        }
+
+        public virtual string DisplayDecimalThousands(decimal? value, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalThousands(value, defaultValue);
+        }
+
+        public virtual string DisplayDecimalThousands(decimal? value, DisplayRoundDirection round)
+        {
+            return _instance.DisplayDecimalThousands(value, round);
+        }
+
+        public virtual string DisplayDecimalThousands(decimal? value, DisplayRoundDirection round, decimal defaultValue)
+        {
+            return _instance.DisplayDecimalThousands(value, round, defaultValue);
+        }
+
+        public virtual string DisplayIf(object value, string result)
+        {
+            return _instance.DisplayIf(value, result);
+        }
+
+        public virtual string DisplayInches(object value)
+        {
+            return _instance.DisplayInches(value);
+        }
+
+        public virtual string DisplayInteger(object value)
+        {
+            return _instance.DisplayInteger(value);
+        }
+
+        public virtual string DisplayInteger(object value, int defaultValue)
+        {
+            return _instance.DisplayInteger(value, defaultValue);
+        }
+
+        public virtual string DisplayInteger(int? value)
+        {
+            return _instance.DisplayInteger(value);
+        }
+
+        public virtual string DisplayInteger(int? value, int defaultValue)
+        {
+            return _instance.DisplayInteger(value, defaultValue);
+        }
+
+        public virtual string DisplayListingDescription(object value)
+        {
+            return _instance.DisplayTextWithEllipse(value);
+        }
+
+        public virtual string DisplayListingDescription(object value, int maxLength)
+        {
+            return _instance.DisplayTextWithEllipse(value, maxLength);
+        }
+
+        public virtual string DisplayPercent(object value)
+        {
+            return _instance.DisplayPercent(value);
+        }
+
+        public virtual string DisplayPercentDecimal(decimal? value)
+        {
+            return _instance.DisplayPercentDecimal(value);
+        }
+
+        public virtual string DisplayPercentDecimal(decimal? value, decimal defaultValue)
+        {
+            return _instance.DisplayPercentDecimal(value, defaultValue);
+        }
+
+        public virtual string DisplayPlace(object value)
+        {
+            return _instance.DisplayPlace(value);
+        }
+
+        public virtual string DisplayQuantity(object value)
+        {
+            return _instance.DisplayQuantity(value);
+        }
+
+        public virtual string DisplayText(object value)
+        {
+            return _instance.DisplayText(value);
+        }
+
+        public virtual string DisplayTextAsEmail(object value)
+        {
+            return _instance.DisplayTextAsEmail(value);
+        }
+
+        public virtual string DisplayTextWithEllipse(object value)
+        {
+            return _instance.DisplayTextWithEllipse(value);
+        }
+
+        public virtual string DisplayTextWithEllipse(object value, int maxLength)
+        {
+            return _instance.DisplayTextWithEllipse(value, maxLength);
+        }
+
+        public virtual string DisplayTime(object value)
+        {
+            return _instance.DisplayTime(value);
+        }
+        #endregion
+
+        #region Public Properties
+        public bool PerformEncoding { get { return _instance.PerformEncoding; } set { _instance.PerformEncoding = value; } }
+        #endregion
+
+
+        #region Fields
+        private static Internal.ServiceDataFormatBase<ServiceDataFormat> _instance;
+        #endregion
+    }
+}
+
+namespace thZero.Services.Internal
+{
+	public class ServiceDataFormatBase<TService> : IntermediaryServiceBase<TService>
+    {
+        public ServiceDataFormatBase(thZero.Services.IServiceLog log, ILogger<TService> logger) : base(log, logger)
+        {
+        }
+
+        #region Public Methods
+        public virtual string DisplayBool(object value)
 		{
 			return DisplayBoolCore(value);
 		}
