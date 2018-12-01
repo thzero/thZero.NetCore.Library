@@ -19,9 +19,23 @@ limitations under the License.
 
 using System;
 
+using Microsoft.Extensions.Logging;
+
 namespace thZero.Services
 {
     public abstract class ServiceBase : IService
     {
+    }
+
+    public abstract class ServiceBase<TService> : IService
+    {
+        public ServiceBase(ILogger<TService> logger)
+        {
+            Logger = logger;
+        }
+
+        #region Protected Methods
+        protected ILogger<TService> Logger { get; private set; }
+        #endregion
     }
 }

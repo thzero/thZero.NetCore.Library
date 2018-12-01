@@ -285,7 +285,6 @@ namespace thZero.Services
         public bool PerformEncoding { get { return _instance.PerformEncoding; } set { _instance.PerformEncoding = value; } }
         #endregion
 
-
         #region Fields
         private static Internal.ServiceDataFormatBase<ServiceDataFormat> _instance;
         #endregion

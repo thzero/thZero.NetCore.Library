@@ -20,141 +20,299 @@ limitations under the License.
 using System;
 using System.Globalization;
 
+using Microsoft.Extensions.Logging;
+
 namespace thZero.Services
 {
-	public sealed class ServiceLocalizationBasic : ServiceBase, IServiceLocalization
+	public sealed class ServiceLocalizationBasicFactory : Internal.ServiceLocalizationBasicBase<ServiceLocalizationBasicFactory>, IServiceLocalization
     {
 		private static readonly thZero.Services.IServiceLog log = thZero.Factory.Instance.RetrieveLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-		#region Public Methods
-		public void Initialize(IServiceLocalizationIntializer value, Type type)
-		{
-		}
+        public ServiceLocalizationBasicFactory() : base(log, null)
+        {
+        }
+    }
 
-		#region Add Cultures
-		public void AddCultureResource(string resourceName)
-		{
-		}
+    public class ServiceLocalizationBasic : ServiceLoggableBase<ServiceLocalizationBasic>, IServiceLocalization
+    {
+        public ServiceLocalizationBasic(ILogger<ServiceLocalizationBasic> logger) : base(logger)
+        {
+            _instance = new Internal.ServiceLocalizationBasicBase<ServiceLocalizationBasic>(null, logger);
+        }
 
-		public void AddCultureResource(System.Reflection.Assembly assembly)
-		{
-		}
+        #region Public Methods
+        public void Initialize(IServiceLocalizationIntializer initializer, Type type)
+        {
+            _instance.Initialize(initializer, type);
+        }
 
-		public void AddCultureResourceType(CultureInfo culture, string name)
-		{
-		}
-		#endregion
+        #region Add Cultures
+        public void AddCultureResource(string resourceName)
+        {
+            _instance.AddCultureResource(resourceName);
+        }
 
-		#region Get Localized Strings
-		public string GetLocalizedString(string abbreviation, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void AddCultureResource(System.Reflection.Assembly assembly)
+        {
+            _instance.AddCultureResource(assembly);
+        }
 
-		public string GetLocalizedStringDefault(string abbreviation, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void AddCultureResourceType(CultureInfo culture, string name)
+        {
+            _instance.AddCultureResourceType(culture, name);
+        }
+        #endregion
 
-		public string GetLocalizedStringWithResource(string abbreviation, string resource, params object[] args)
-		{
-			return abbreviation;
-		}
+        #region Get Localized Strings
+        public string GetLocalizedString(string abbreviation, params object[] args)
+        {
+            return _instance.GetLocalizedString(abbreviation, args);
+        }
 
-		public string GetLocalizedStringWithResourceDefault(string abbreviation, string resource, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringDefault(string abbreviation, string defaultValue, params object[] args)
+        {
+            return _instance.GetLocalizedString(abbreviation, defaultValue, args);
+        }
 
-		public string GetLocalizedString(CultureInfo culture, string abbreviation, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringWithResource(string abbreviation, string resource, params object[] args)
+        {
+            return _instance.GetLocalizedString(abbreviation, resource, args);
+        }
 
-		public string GetLocalizedStringDefault(CultureInfo culture, string abbreviation, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringWithResourceDefault(string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return _instance.GetLocalizedString(abbreviation, resource, defaultValue, args);
+        }
 
-		public string GetLocalizedStringWithResource(CultureInfo culture, string abbreviation, string resource, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedString(CultureInfo culture, string abbreviation, params object[] args)
+        {
+            return _instance.GetLocalizedString(culture, abbreviation, args);
+        }
 
-		public string GetLocalizedStringWithResourceDefault(CultureInfo culture, string abbreviation, string resource, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringDefault(CultureInfo culture, string abbreviation, string defaultValue, params object[] args)
+        {
+            return _instance.GetLocalizedString(culture, abbreviation, defaultValue, args);
+        }
 
-		public string GetLocalizedString(Type type, string abbreviation, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringWithResource(CultureInfo culture, string abbreviation, string resource, params object[] args)
+        {
+            return _instance.GetLocalizedString(culture, abbreviation, resource, args);
+        }
 
-		public string GetLocalizedStringDefault(Type type, string abbreviation, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public string GetLocalizedStringWithResourceDefault(CultureInfo culture, string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return _instance.GetLocalizedString(culture, abbreviation, resource, defaultValue, args);
+        }
+        #endregion
 
-		public string GetLocalizedStringWithResource(Type type, string abbreviation, string resource, params object[] args)
-		{
-			return abbreviation;
-		}
+        #region Load
+        public void LoadCultureResources(string rootPath)
+        {
+            _instance.LoadCultureResources(rootPath);
+        }
 
-		public string GetLocalizedStringWithResourceDefault(Type type, string abbreviation, string resource, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void LoadCultureResources(string rootPath, string resourceFolder)
+        {
+            _instance.LoadCultureResources(rootPath, resourceFolder);
+        }
 
-		public string GetLocalizedString(CultureInfo culture, Type type, string abbreviation, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void LoadCultureResourcesClient()
+        {
+            _instance.LoadCultureResourcesClient();
+        }
 
-		public string GetLocalizedStringDefault(CultureInfo culture, Type type, string abbreviation, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void LoadCultureResourcesAll(string rootPath, string resourceFolder)
+        {
+            _instance.LoadCultureResourcesAll(rootPath, resourceFolder);
+        }
 
-		public string GetLocalizedStringWithResource(CultureInfo culture, Type type, string abbreviation, string resource, params object[] args)
-		{
-			return abbreviation;
-		}
+        public void LoadCultureResourcesAll(string rootPath, string resourceFolder, CultureInfo defaultCulture)
+        {
+            _instance.LoadCultureResourcesAll(rootPath, resourceFolder, defaultCulture);
+        }
 
-		public string GetLocalizedStringWithResourceDefault(CultureInfo culture, Type type, string abbreviation, string resource, string defaultValue, params object[] args)
-		{
-			return abbreviation;
-		}
-		#endregion
+        public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder)
+        {
+            _instance.LoadCultureResources(culture, rootPath, resourceFolder);
+        }
 
-		#region Load
-		public void LoadCultureResources(string rootPath)
-		{
-		}
+        public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder, CultureInfo defaultCulture)
+        {
+            _instance.LoadCultureResources(culture, rootPath, resourceFolder, defaultCulture);
+        }
+        #endregion
 
-		public void LoadCultureResources(string rootPath, string resourceFolder)
-		{
-		}
+        #endregion
 
-		public void LoadCultureResourcesClient()
-		{
-		}
+        #region Public Properties
+        public CultureInfo DefaultCulture
+        {
+            get { return _instance.DefaultCulture; }
+            set { _instance.DefaultCulture = value; }
+        }
 
-		public void LoadCultureResourcesAll(string rootPath, string resourceFolder)
-		{
-		}
+        public string DefaultResource
+        {
+            get { return _instance.DefaultResource; }
+            set { _instance.DefaultResource = value; }
+        }
 
-		public void LoadCultureResourcesAll(string rootPath, string resourceFolder, CultureInfo defaultCulture)
-		{
-		}
+        public string ResourceFolder
+        {
+            get { return _instance.ResourceFolder; }
+            set { _instance.ResourceFolder = value; }
+        }
 
-		public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder)
-		{
-		}
+        public string RootPath
+        {
+            get { return _instance.RootPath; }
+            set { _instance.RootPath = value; }
+        }
+        #endregion
 
-		public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder, CultureInfo defaultCulture)
-		{
-		}
+        #region Fields
+        private static Internal.ServiceLocalizationBasicBase<ServiceLocalizationBasic> _instance;
+        #endregion
+    }
+}
+
+namespace thZero.Services.Internal
+{
+    public class ServiceLocalizationBasicBase<TService> : IntermediaryServiceBase<TService>
+    {
+        public ServiceLocalizationBasicBase(thZero.Services.IServiceLog log, ILogger<TService> logger) : base(log, logger)
+        {
+        }
+
+        #region Public Methods
+        public void Initialize(IServiceLocalizationIntializer value, Type type)
+        {
+        }
+
+        #region Add Cultures
+        public void AddCultureResource(string resourceName)
+        {
+        }
+
+        public void AddCultureResource(System.Reflection.Assembly assembly)
+        {
+        }
+
+        public void AddCultureResourceType(CultureInfo culture, string name)
+        {
+        }
+        #endregion
+
+        #region Get Localized Strings
+        public string GetLocalizedString(string abbreviation, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringDefault(string abbreviation, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResource(string abbreviation, string resource, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResourceDefault(string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedString(CultureInfo culture, string abbreviation, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringDefault(CultureInfo culture, string abbreviation, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResource(CultureInfo culture, string abbreviation, string resource, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResourceDefault(CultureInfo culture, string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedString(Type type, string abbreviation, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringDefault(Type type, string abbreviation, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResource(Type type, string abbreviation, string resource, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResourceDefault(Type type, string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedString(CultureInfo culture, Type type, string abbreviation, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringDefault(CultureInfo culture, Type type, string abbreviation, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResource(CultureInfo culture, Type type, string abbreviation, string resource, params object[] args)
+        {
+            return abbreviation;
+        }
+
+        public string GetLocalizedStringWithResourceDefault(CultureInfo culture, Type type, string abbreviation, string resource, string defaultValue, params object[] args)
+        {
+            return abbreviation;
+        }
+        #endregion
+
+        #region Load
+        public void LoadCultureResources(string rootPath)
+        {
+        }
+
+        public void LoadCultureResources(string rootPath, string resourceFolder)
+        {
+        }
+
+        public void LoadCultureResourcesClient()
+        {
+        }
+
+        public void LoadCultureResourcesAll(string rootPath, string resourceFolder)
+        {
+        }
+
+        public void LoadCultureResourcesAll(string rootPath, string resourceFolder, CultureInfo defaultCulture)
+        {
+        }
+
+        public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder)
+        {
+        }
+
+        public void LoadCultureResources(CultureInfo culture, string rootPath, string resourceFolder, CultureInfo defaultCulture)
+        {
+        }
         #endregion
 
         #endregion
@@ -163,26 +321,26 @@ namespace thZero.Services
         public CultureInfo DefaultCulture { get; set; } = CultureInfo.CurrentCulture;
 
         public string DefaultResource
-		{
-			get { return _defaultResource; }
-			set { _defaultResource = value; }
-		}
+        {
+            get { return _defaultResource; }
+            set { _defaultResource = value; }
+        }
 
-		public string ResourceFolder
-		{
-			get;
-			set;
-		}
+        public string ResourceFolder
+        {
+            get;
+            set;
+        }
 
-		public string RootPath
-		{
-			get;
-			set;
-		}
+        public string RootPath
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Fields
         private static string _defaultResource = "strings";
-		#endregion
-	}
+        #endregion
+    }
 }

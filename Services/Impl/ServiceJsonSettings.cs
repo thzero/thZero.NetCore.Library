@@ -21,7 +21,7 @@ using System;
 
 namespace thZero.Services
 {
-	public class ServiceJsonSettings : ServiceBase, IServiceJsonSettings
+	public class ServiceJsonSettings : IServiceJsonSettings
     {
 		#region Public Properties
 		public object ContractResolver { get; set; }

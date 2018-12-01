@@ -23,17 +23,19 @@ using Microsoft.Extensions.Logging;
 
 namespace thZero.Services
 {
-    public abstract class IntermediaryServiceBase<TService>
+    public abstract class IntermediaryServiceBase<TService> : ServiceBase<TService>
     {
-        public IntermediaryServiceBase(thZero.Services.IServiceLog log, ILogger<TService> logger)
+        public IntermediaryServiceBase(thZero.Services.IServiceLog log) : base(null)
         {
             Log = log;
-            Logger = logger;
+        }
+        public IntermediaryServiceBase(thZero.Services.IServiceLog log, ILogger<TService> logger) : base(logger)
+        {
+            Log = log;
         }
 
         #region Protected Methods
         protected thZero.Services.IServiceLog Log { get; private set; }
-        protected ILogger<TService> Logger { get; private set; }
         #endregion
     }
 }

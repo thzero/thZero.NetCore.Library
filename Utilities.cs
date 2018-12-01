@@ -332,10 +332,17 @@ namespace thZero.Utilities
 
 			return false;
 		}
-		#endregion
-	}
+        #endregion
+    }
 
-	public static class String
+    public static class ServiceProvider
+    {
+        #region Public Properties
+        public static IServiceProvider Instance { get; set; }
+        #endregion
+    }
+
+    public static class String
 	{
 		#region Constants
 		public const string Empty = "";
@@ -695,10 +702,12 @@ namespace thZero.Utilities
 			return this;
 		}
 
-		public int Counter { get; private set; }
-	}
+        #region Public Properties
+        public int Counter { get; private set; }
+        #endregion
+    }
 
-	public enum StopwatchLogTypesOutput
+    public enum StopwatchLogTypesOutput
 	{
 		Elapsed,
 		End,
