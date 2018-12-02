@@ -19,7 +19,7 @@ limitations under the License.
 
 using System;
 
-namespace thZero.AspNetCore
+namespace thZero
 {
     public interface IInstrumentationPacket
     {
