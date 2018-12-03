@@ -23,6 +23,11 @@ namespace thZero.Configuration
 {
 	public class ApplicationEmail
 	{
+        public ApplicationEmail()
+        {
+            Smtp = new ApplicationEmailSmtp();
+        }
+
 		public bool Enabled { get; set; }
 		public string AddressCopyright { get; set; }
 		public string AddressCopyrightDisplayName { get; set; }
@@ -34,10 +39,15 @@ namespace thZero.Configuration
 		public string AddressPrivacyDisplayName { get; set; }
 		public string AddressTerms { get; set; }
 		public string AddressTermsDisplayName { get; set; }
-		public string SmtpPort { get; set; }
-		public string SmtpServer { get; set; }
-		public bool SmtpSsl { get; set; }
-		public string SmtpUser { get; set; }
-		public string SmtpUserPassword { get; set; }
-	}
+        public ApplicationEmailSmtp Smtp { get; set; }
+    }
+
+    public class ApplicationEmailSmtp
+    {
+        public string Port { get; set; }
+        public string Server { get; set; }
+        public bool Ssl { get; set; }
+        public string User { get; set; }
+        public string UserPassword { get; set; }
+    }
 }
