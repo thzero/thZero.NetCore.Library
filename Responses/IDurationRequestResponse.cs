@@ -35,6 +35,8 @@ namespace thZero.Responses
 		long DurationStart { get; set; }
 		IEnumerable<IDurationResponseResultItem> DurationsAdditional { get; }
 
+#if DEBUG
 		bool IsDebug { get; set; }
+#endif
 	}
 }
