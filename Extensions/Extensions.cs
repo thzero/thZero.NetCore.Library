@@ -20,6 +20,7 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 
 namespace thZero
@@ -134,11 +135,23 @@ namespace thZero
 				return _whitespaceCharacter;
 			}
 		}
-		#endregion
+        #endregion
 
-		#region Fields
-		private static volatile List<char> _whitespaceCharacter;
+        #region Uri
+        public static Uri Append(this Uri uri, params string[] paths)
+        {
+            return new Uri(paths.Aggregate(uri.AbsoluteUri, (current, path) => string.Format(UriFormat, current.TrimEnd(SeperatorSlash), path.TrimStart(SeperatorSlash))));
+        }
+        #endregion
+
+        #region Fields
+        private static volatile List<char> _whitespaceCharacter;
 		private static readonly object _lock = new object();
-		#endregion
-	}
+        #endregion
+
+        #region Constants
+        private const char SeperatorSlash = '/';
+        private const string UriFormat = "{0}/{1}";
+        #endregion
+    }
 }
