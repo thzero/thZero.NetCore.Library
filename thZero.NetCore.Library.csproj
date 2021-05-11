@@ -1,26 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<AssemblyName>thZero.NetCore.Library</AssemblyName>
 		<PackageId>thZero.NetCore.Library</PackageId>
-    <Description></Description>
-    <Authors>thZero.com</Authors>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<Description></Description>
+		<Authors>thZero.com</Authors>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/thzero/thZero.NetCore.Library</PackageProjectUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/thzero/thZero.NetCore.Library</RepositoryUrl>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/thzero/thZero.NetCore.Library</PackageProjectUrl>
+		<RepositoryType>GitHub</RepositoryType>
+		<RepositoryUrl>https://github.com/thzero/thZero.NetCore.Library</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Crc32.NET" Version="1.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
 	</ItemGroup>
 
 </Project>

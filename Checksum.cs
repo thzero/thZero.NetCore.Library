@@ -1,6 +1,6 @@
 ﻿/* ------------------------------------------------------------------------- *
 thZero.NetCore.Library
-Copyright (C) 2016-2019 thZero.com
+Copyright (C) 2016-2021 thZero.com
 
 <development [at] thzero [dot] com>
 
@@ -115,9 +115,6 @@ namespace thZero.Utilities
 
 		public static byte[] ToBytes(DateTime value)
 		{
-			if (value == null)
-				return new byte[] { };
-
 			return BitConverter.GetBytes(value.Ticks);
 		}
 
@@ -148,18 +145,12 @@ namespace thZero.Utilities
 
 		public static byte[] ToBytes(DateTimeOffset value)
 		{
-			if (value == null)
-				return new byte[] { };
-
 			return BitConverter.GetBytes(value.Ticks);
 		}
 
 		public static byte[] ToBytes(string name, DateTimeOffset value)
 		{
 			Enforce.AgainstNullOrEmpty(() => name);
-
-			if (value == null)
-				return ToBytesNone(name);
 
 			return ToBytes(name, ToBytes(value));
 		}
