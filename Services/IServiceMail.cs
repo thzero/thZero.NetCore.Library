@@ -24,15 +24,15 @@ using thZero.Configuration;
 
 namespace thZero.Services
 {
-	public interface IServiceMail : IService
-	{
-		#region Methods
-		void Send(string toAddress, string subject, string body, ApplicationEmail config);
-		void Send(string toAddress, string subject, string body, string fromAddress, ApplicationEmail config);
-		void Send(string toAddress, string toDisplayName, string subject, string body, string fromAddress, string fromDisplayName, ApplicationEmail config);
-		Task<bool> SendAsync(string toAddress, string subject, string body, ApplicationEmail config);
-		Task<bool> SendAsync(string toAddress, string subject, string body, string fromAddress, ApplicationEmail config);
-		Task<bool> SendAsync(string toAddress, string toDisplayName, string subject, string body, string fromAddress, string fromDisplayName, ApplicationEmail config);
-		#endregion
-	}
+    public interface IServiceMail : IService
+    {
+        #region Methods
+        void Send(string toAddress, string subject, string body, ApplicationEmail config);
+        void Send(string toAddress, string subject, string body, string fromAddress, ApplicationEmail config);
+        void Send(string toAddress, string toDisplayName, string subject, string body, string fromAddress, string fromDisplayName, ApplicationEmail config);
+        Task<bool> SendAsync(string toAddress, string subject, string body, ApplicationEmail config);
+        Task<bool> SendAsync(string toAddress, string subject, string body, string fromAddress, ApplicationEmail config);
+        Task<bool> SendAsync(string toAddress, string toDisplayName, string subject, string body, string fromAddress, string fromDisplayName, ApplicationEmail config);
+        #endregion
+    }
 }

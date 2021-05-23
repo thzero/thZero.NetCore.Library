@@ -21,13 +21,13 @@ using System;
 
 namespace thZero.Services
 {
-	public class ServiceJsonSettings : IServiceJsonSettings
+    public class ServiceJsonSettings : IServiceJsonSettings
     {
-		#region Public Properties
-		public object ContractResolver { get; set; }
-		public object DefaultValueHandling { get; set; }
-		public object MissingMemberHandling { get; set; }
-		public object NullValueHandling { get; set; }
-		#endregion
-	}
+        #region Public Properties
+        public object ContractResolver { get; set; }
+        public object DefaultValueHandling { get; set; }
+        public object MissingMemberHandling { get; set; }
+        public object NullValueHandling { get; set; }
+        #endregion
+    }
 }

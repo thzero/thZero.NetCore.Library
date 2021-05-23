@@ -22,20 +22,20 @@ using System.IO;
 
 namespace thZero.Services
 {
-	public interface IServiceJson : IService
-	{
-		#region Methods
-		T Deserialize<T>(string data);
-		object Deserialize(string data, Type type);
-		T Deserialize<T>(Stream stream);
-		object Deserialize(Stream stream, Type type);
-		object DeserializeObject(string data);
-		string Serialize(object data);
-		void Serialize(object data, Stream stream);
-		#endregion
+    public interface IServiceJson : IService
+    {
+        #region Methods
+        T Deserialize<T>(string data);
+        object Deserialize(string data, Type type);
+        T Deserialize<T>(Stream stream);
+        object Deserialize(Stream stream, Type type);
+        object DeserializeObject(string data);
+        string Serialize(object data);
+        void Serialize(object data, Stream stream);
+        #endregion
 
-		#region Properties
-		IServiceJsonSettings Settings { get; }
-		#endregion
-	}
+        #region Properties
+        IServiceJsonSettings Settings { get; }
+        #endregion
+    }
 }

@@ -23,8 +23,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace thZero.DependencyInjection
 {
-	public sealed class SingletonDependencyAttribute : DependencyAttribute
-	{
-		public SingletonDependencyAttribute() : base(ServiceLifetime.Singleton) { }
-	}
+    public sealed class SingletonDependencyAttribute : DependencyAttribute
+    {
+        public SingletonDependencyAttribute() : base(ServiceLifetime.Singleton) { }
+    }
 }

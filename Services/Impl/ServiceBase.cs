@@ -21,6 +21,8 @@ using System;
 
 using Microsoft.Extensions.Logging;
 
+using thZero.Responses;
+
 namespace thZero.Services
 {
     public abstract class ServiceBase : IService
@@ -35,6 +37,15 @@ namespace thZero.Services
         }
 
         #region Protected Methods
+        protected TResult Error<TResult>(TResult result)
+             where TResult : SuccessResponse
+        {
+            result.Success = false;
+            return result;
+        }
+        #endregion
+
+        #region Protected Properties
         protected ILogger<TService> Logger { get; private set; }
         #endregion
     }

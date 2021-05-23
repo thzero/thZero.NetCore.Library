@@ -17,15 +17,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
  * ------------------------------------------------------------------------- */
 
-using System;
-
 namespace thZero.Responses
 {
-	public interface IRequestResponse
-	{
-		long ComputeChecksum();
-		string Message { get; set; }
-		bool Status { get; set; }
-		string Version { get; }
-	}
+    public abstract class BaseRequest
+    {
+    }
+
+    public abstract class BaseRequest<T> : BaseRequest
+    {
+        #region Public Properties
+        public T Id { get; set; }
+        #endregion
+    }
 }

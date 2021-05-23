@@ -17,21 +17,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
  * ------------------------------------------------------------------------- */
 
-using System;
-
-using Microsoft.Extensions.Logging;
-
-namespace thZero.Services
+namespace thZero.Responses
 {
-    public abstract class ServiceLoggableBase<TService> : ServiceBase
+    public class EditRequest : BaseRequest
     {
-        public ServiceLoggableBase(ILogger<TService> logger)
+        public EditRequest()
         {
-            Logger = logger;
         }
+    }
 
-        #region Protected Properties
-        protected ILogger<TService> Logger { get; private set; }
+    public abstract class EditRequest<T> : EditRequest
+    {
+        #region Public Properties
+        public virtual T Id { get; set; }
         #endregion
     }
 }

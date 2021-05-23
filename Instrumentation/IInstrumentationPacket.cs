@@ -19,7 +19,7 @@ limitations under the License.
 
 using System;
 
-namespace thZero
+namespace thZero.Instrumentation
 {
     public interface IInstrumentationPacket
     {

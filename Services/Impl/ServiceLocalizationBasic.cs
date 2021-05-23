@@ -24,16 +24,16 @@ using Microsoft.Extensions.Logging;
 
 namespace thZero.Services
 {
-	public sealed class ServiceLocalizationBasicFactory : Internal.ServiceLocalizationBasicBase<ServiceLocalizationBasicFactory>, IServiceLocalization
+    public sealed class ServiceLocalizationBasicFactory : Internal.ServiceLocalizationBasicBase<ServiceLocalizationBasicFactory>, IServiceLocalization
     {
-		private static readonly thZero.Services.IServiceLog log = thZero.Factory.Instance.RetrieveLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly thZero.Services.IServiceLog log = thZero.Factory.Instance.RetrieveLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public ServiceLocalizationBasicFactory() : base(log, null)
         {
         }
     }
 
-    public class ServiceLocalizationBasic : ServiceLoggableBase<ServiceLocalizationBasic>, IServiceLocalization
+    public class ServiceLocalizationBasic : ServiceBase<ServiceLocalizationBasic>, IServiceLocalization
     {
         public ServiceLocalizationBasic(ILogger<ServiceLocalizationBasic> logger) : base(logger)
         {

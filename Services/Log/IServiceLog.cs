@@ -21,59 +21,59 @@ using System;
 
 namespace thZero.Services
 {
-	public interface IServiceLog : IService
-	{
-		#region Methods
-		void Debug(object message);
-		void Debug(string method, object message);
-		void Debug(string method, object message, Exception ex);
-		void Debug(string method, object message, object value);
-		void Diagnostic(object message);
-		void Diagnostic(string method, object message);
-		void Diagnostic(string method, object message, Exception ex);
-		void Diagnostic(string method, object message, object value);
-		void Error(string method, object message);
-		void Error(string method, Exception ex);
-		void Error(string method, Exception ex, params string[] additional);
-		void Error(string method, object message, Exception ex, params string[] additional);
-		void Fatal(string method, object message);
-		void Fatal(string method, Exception ex);
-		void Fatal(string method, object message, Exception ex);
-		void Info(object message);
-		void Info(string method, object message);
-		void Info(string method, object message, Exception ex);
-		void Query(object message);
-		void Query(string method, object message, object value);
-		void Security(object message);
-		void Timing(object message);
-		void Timing(string method, object message);
-		void Timing(string method, object message, Exception ex);
-		void Timing(string method, object message, object value);
-		void Trace(string method, object message);
-		void Trace(string method, object message, Exception ex);
-		void Trace(string method, object message, object value);
-		void TraceFinish(string method);
-		void TraceStart(string method);
-		void Verbose(object message);
-		void Verbose(string method, object message);
-		void Verbose(string method, object message, Exception ex);
-		void Verbose(string method, object message, object value);
-		void Warn(string method, object message);
-		void Warn(string method, object message, Exception ex);
-		#endregion
+    public interface IServiceLog : IService
+    {
+        #region Methods
+        void Debug(object message);
+        void Debug(string method, object message);
+        void Debug(string method, object message, Exception ex);
+        void Debug(string method, object message, object value);
+        void Diagnostic(object message);
+        void Diagnostic(string method, object message);
+        void Diagnostic(string method, object message, Exception ex);
+        void Diagnostic(string method, object message, object value);
+        void Error(string method, object message);
+        void Error(string method, Exception ex);
+        void Error(string method, Exception ex, params string[] additional);
+        void Error(string method, object message, Exception ex, params string[] additional);
+        void Fatal(string method, object message);
+        void Fatal(string method, Exception ex);
+        void Fatal(string method, object message, Exception ex);
+        void Info(object message);
+        void Info(string method, object message);
+        void Info(string method, object message, Exception ex);
+        void Query(object message);
+        void Query(string method, object message, object value);
+        void Security(object message);
+        void Timing(object message);
+        void Timing(string method, object message);
+        void Timing(string method, object message, Exception ex);
+        void Timing(string method, object message, object value);
+        void Trace(string method, object message);
+        void Trace(string method, object message, Exception ex);
+        void Trace(string method, object message, object value);
+        void TraceFinish(string method);
+        void TraceStart(string method);
+        void Verbose(object message);
+        void Verbose(string method, object message);
+        void Verbose(string method, object message, Exception ex);
+        void Verbose(string method, object message, object value);
+        void Warn(string method, object message);
+        void Warn(string method, object message, Exception ex);
+        #endregion
 
-		#region Properties
-		bool IsDebugEnabled { get; set; }
-		bool IsDiagnosticEnabled { get; set; }
-		bool IsErrorEnabled { get; set; }
-		bool IsFatalEnabled { get; set; }
-		bool IsInfoEnabled { get; set; }
-		bool IsQueryEnabled { get; set; }
-		bool IsSecurityEnabled { get; set; }
-		bool IsTimingEnabled { get; set; }
-		bool IsTraceEnabled { get; set; }
-		bool IsVerboseEnabled { get; set; }
-		bool IsWarnEnabled { get; set; }
-		#endregion
-	}
+        #region Properties
+        bool IsDebugEnabled { get; set; }
+        bool IsDiagnosticEnabled { get; set; }
+        bool IsErrorEnabled { get; set; }
+        bool IsFatalEnabled { get; set; }
+        bool IsInfoEnabled { get; set; }
+        bool IsQueryEnabled { get; set; }
+        bool IsSecurityEnabled { get; set; }
+        bool IsTimingEnabled { get; set; }
+        bool IsTraceEnabled { get; set; }
+        bool IsVerboseEnabled { get; set; }
+        bool IsWarnEnabled { get; set; }
+        #endregion
+    }
 }

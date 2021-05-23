@@ -21,14 +21,14 @@ using System;
 
 namespace thZero.Services
 {
-	public interface IServiceVersionInformation : IService
-	{
-		#region Properties
-		string ApplicationName { get; set; }
-		DateTime BuildDate { get; set; }
-		string BuildDateFormatted { get; }
-		Version Version { get; set; }
-		string VersionFormatted { get; }
-		#endregion
-	}
+    public interface IServiceVersionInformation : IService
+    {
+        #region Properties
+        string ApplicationName { get; set; }
+        DateTime BuildDate { get; set; }
+        string BuildDateFormatted { get; }
+        Version Version { get; set; }
+        string VersionFormatted { get; }
+        #endregion
+    }
 }

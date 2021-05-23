@@ -23,8 +23,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace thZero.DependencyInjection
 {
-	public sealed class ScopedDependencyAttribute : DependencyAttribute
-	{
-		public ScopedDependencyAttribute() : base(ServiceLifetime.Scoped) { }
-	}
+    public sealed class ScopedDependencyAttribute : DependencyAttribute
+    {
+        public ScopedDependencyAttribute() : base(ServiceLifetime.Scoped) { }
+    }
 }

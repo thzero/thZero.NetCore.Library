@@ -21,7 +21,7 @@ using System;
 
 namespace thZero.Services
 {
-	public interface IService
-	{
-	}
+    public interface IService
+    {
+    }
 }

@@ -21,49 +21,49 @@ using System;
 
 namespace thZero.Services
 {
-	/// <summary>
-	/// Factory to create IServiceLogger instances
-	/// </summary>
-	//[System.Diagnostics.Contracts.ContractClass(typeof(ProviderLogFactoryContract))]
-	public interface IServiceLogFactory : IService
-	{
-		#region Methods
-		/// <summary>
-		/// Initialize the logger
-		/// </summary>
-		/// <param name="log4NetConfigurationFile">File name of the configuration.</param>
-		/// <returns></returns>
-		void Initialize(params object[] args);
+    /// <summary>
+    /// Factory to create IServiceLogger instances
+    /// </summary>
+    //[System.Diagnostics.Contracts.ContractClass(typeof(ProviderLogFactoryContract))]
+    public interface IServiceLogFactory : IService
+    {
+        #region Methods
+        /// <summary>
+        /// Initialize the logger
+        /// </summary>
+        /// <param name="log4NetConfigurationFile">File name of the configuration.</param>
+        /// <returns></returns>
+        void Initialize(params object[] args);
 
-		/// <summary>
-		/// Gets the logger.
-		/// </summary>
-		/// <param name="type">The type.</param>
-		/// <returns></returns>
-		IServiceLog RetrieveLogger(Type type);
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        IServiceLog RetrieveLogger(Type type);
 
-		/// <summary>
-		/// Gets the logger.
-		/// </summary>
-		/// <param name="typeName">Name of the type.</param>
-		/// <returns></returns>
-		IServiceLog RetrieveLogger(string typeName);
-		#endregion
-	}
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <param name="typeName">Name of the type.</param>
+        /// <returns></returns>
+        IServiceLog RetrieveLogger(string typeName);
+        #endregion
+    }
 
-	/// <summary>
-	/// Factory to create IServiceLogConfigurableFactory instances
-	/// </summary>
-	//[System.Diagnostics.Contracts.ContractClass(typeof(ProviderLogFactoryContract))]
-	public interface IServiceLogConfigurableFactory : IServiceLogFactory
-	{
-		#region Methods
-		/// <summary>
-		/// Initialize the logger
-		/// </summary>
-		/// <param name="log4NetConfigurationFile">File name of the configuration.</param>
-		/// <returns></returns>
-		void Initialize(string configurationFile);
-		#endregion
-	}
+    /// <summary>
+    /// Factory to create IServiceLogConfigurableFactory instances
+    /// </summary>
+    //[System.Diagnostics.Contracts.ContractClass(typeof(ProviderLogFactoryContract))]
+    public interface IServiceLogConfigurableFactory : IServiceLogFactory
+    {
+        #region Methods
+        /// <summary>
+        /// Initialize the logger
+        /// </summary>
+        /// <param name="log4NetConfigurationFile">File name of the configuration.</param>
+        /// <returns></returns>
+        void Initialize(string configurationFile);
+        #endregion
+    }
 }

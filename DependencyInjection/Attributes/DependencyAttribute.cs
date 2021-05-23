@@ -24,29 +24,29 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace thZero.DependencyInjection
 {
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-	public abstract class DependencyAttribute : Attribute
-	{
-		protected DependencyAttribute(ServiceLifetime dependencyType)
-		{
-			DependencyType = dependencyType;
-			Order = long.MaxValue;
-		}
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public abstract class DependencyAttribute : Attribute
+    {
+        protected DependencyAttribute(ServiceLifetime dependencyType)
+        {
+            DependencyType = dependencyType;
+            Order = long.MaxValue;
+        }
 
-		#region Public Methods
-		public ServiceDescriptor BuildServiceDescriptor(TypeInfo type)
-		{
-			var serviceType = ServiceType ?? type.AsType();
-			return new ServiceDescriptor(serviceType, type.AsType(), DependencyType);
-		}
-		#endregion
+        #region Public Methods
+        public ServiceDescriptor BuildServiceDescriptor(TypeInfo type)
+        {
+            var serviceType = ServiceType ?? type.AsType();
+            return new ServiceDescriptor(serviceType, type.AsType(), DependencyType);
+        }
+        #endregion
 
-		#region Public Properties
-		public ServiceLifetime DependencyType { get; set; }
+        #region Public Properties
+        public ServiceLifetime DependencyType { get; set; }
 
-		public long Order { get; set; }
+        public long Order { get; set; }
 
-		public Type ServiceType { get; set; }
-		#endregion
-	}
+        public Type ServiceType { get; set; }
+        #endregion
+    }
 }

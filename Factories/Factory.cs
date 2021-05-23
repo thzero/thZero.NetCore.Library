@@ -25,248 +25,248 @@ using thZero.Services;
 
 namespace thZero
 {
-	public abstract class Factory : FactoryBase
-	{
-		#region Public Methods
-		/// <summary>
-		/// Initializes a specific factory by type.
-		/// </summary>
-		public static void Initialize<TFactory>() where TFactory : Factory
-		{
-			if (_instance != null)
-				return;
+    public abstract class Factory : FactoryBase
+    {
+        #region Public Methods
+        /// <summary>
+        /// Initializes a specific factory by type.
+        /// </summary>
+        public static void Initialize<TFactory>() where TFactory : Factory
+        {
+            if (_instance != null)
+                return;
 
-			lock (Lock)
-			{
-				if (_instance != null)
-					return;
+            lock (Lock)
+            {
+                if (_instance != null)
+                    return;
 
-				_instance = Utilities.Activator.CreateInstance<TFactory>();
+                _instance = Utilities.Activator.CreateInstance<TFactory>();
 
-				_instance.InitializeInstance();
-			}
-		}
+                _instance.InitializeInstance();
+            }
+        }
 
-		public static void Initialize(Type type)
-		{
-			if (_instance != null)
-				return;
+        public static void Initialize(Type type)
+        {
+            if (_instance != null)
+                return;
 
-			lock (Lock)
-			{
-				if (_instance != null)
-					return;
+            lock (Lock)
+            {
+                if (_instance != null)
+                    return;
 
-				if (type != null)
-					_instance = Utilities.Activator.CreateInstance<Factory>(type);
+                if (type != null)
+                    _instance = Utilities.Activator.CreateInstance<Factory>(type);
 
-				if (_instance == null)
-					throw new UninitializedFactoryException("Factory has not be initialized.");
+                if (_instance == null)
+                    throw new UninitializedFactoryException("Factory has not be initialized.");
 
-				_instance.InitializeInstance();
-			}
-		}
+                _instance.InitializeInstance();
+            }
+        }
 
-		public static void InitializeByAttribute(object root)
-		{
-			if (_instance != null)
-				return;
+        public static void InitializeByAttribute(object root)
+        {
+            if (_instance != null)
+                return;
 
-			lock (Lock)
-			{
-				if (_instance != null)
-					return;
+            lock (Lock)
+            {
+                if (_instance != null)
+                    return;
 
-				if (root != null)
-				{
-					FactoryAttribute attribute = null;
+                if (root != null)
+                {
+                    FactoryAttribute attribute = null;
 
-					if (root is System.Reflection.Assembly)
-						attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>((System.Reflection.Assembly)root);
-					else
-						attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(root);
+                    if (root is System.Reflection.Assembly)
+                        attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>((System.Reflection.Assembly)root);
+                    else
+                        attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(root);
 
-					if (attribute != null)
-					{
-						if (attribute.FactoryType == null)
-							throw new InvalidTypeInversionContainerException("Invalid FactoryAttribute value found on the Factory attribute.");
+                    if (attribute != null)
+                    {
+                        if (attribute.FactoryType == null)
+                            throw new InvalidTypeInversionContainerException("Invalid FactoryAttribute value found on the Factory attribute.");
 
-						_instance = Utilities.Activator.CreateInstance<Factory>(attribute.FactoryType);
-					}
-				}
+                        _instance = Utilities.Activator.CreateInstance<Factory>(attribute.FactoryType);
+                    }
+                }
 
-				if (_instance == null)
-					throw new UninitializedFactoryException("Factory has not be initialized.");
+                if (_instance == null)
+                    throw new UninitializedFactoryException("Factory has not be initialized.");
 
-				_instance.InitializeInstance();
-			}
-		}
+                _instance.InitializeInstance();
+            }
+        }
 
-		public static void InitializeByAttribute(Type type)
-		{
-			if (_instance != null)
-				return;
+        public static void InitializeByAttribute(Type type)
+        {
+            if (_instance != null)
+                return;
 
-			lock (Lock)
-			{
-				if (_instance != null)
-					return;
+            lock (Lock)
+            {
+                if (_instance != null)
+                    return;
 
-				if (type != null)
-				{
-					FactoryAttribute attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(type);
-					if (attribute != null)
-					{
-						if (attribute.FactoryType == null)
-							throw new InvalidTypeInversionContainerException("Invalid FactoryAttribute value found on the Factory attribute.");
+                if (type != null)
+                {
+                    FactoryAttribute attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(type);
+                    if (attribute != null)
+                    {
+                        if (attribute.FactoryType == null)
+                            throw new InvalidTypeInversionContainerException("Invalid FactoryAttribute value found on the Factory attribute.");
 
-						_instance = Utilities.Activator.CreateInstance<Factory>(attribute.FactoryType);
-					}
-				}
+                        _instance = Utilities.Activator.CreateInstance<Factory>(attribute.FactoryType);
+                    }
+                }
 
-				if (_instance == null)
-					throw new UninitializedFactoryException("Factory has not be initialized.");
+                if (_instance == null)
+                    throw new UninitializedFactoryException("Factory has not be initialized.");
 
-				_instance.InitializeInstance();
-			}
-		}
+                _instance.InitializeInstance();
+            }
+        }
 
-		/// <summary>
-		/// Initializes the logging factory. If not specified the logging factory defaults to ProviderLogFactoryNull.
-		/// </summary>
-		public static void InitializeProviderLogFactory(string type)
-		{
-			Enforce.AgainstNullOrEmpty(() => type);
+        /// <summary>
+        /// Initializes the logging factory. If not specified the logging factory defaults to ProviderLogFactoryNull.
+        /// </summary>
+        public static void InitializeProviderLogFactory(string type)
+        {
+            Enforce.AgainstNullOrEmpty(() => type);
 
-			object result = Activator.CreateInstance(Type.GetType(type));
-			if (result == null)
-				return;
+            object result = Activator.CreateInstance(Type.GetType(type));
+            if (result == null)
+                return;
 
-			if (result.GetType().GetTypeInfo().IsAssignableFrom(typeof(IServiceLogFactory)))
-				throw new InvalidFactoryException("Invalid IServiceLogFactory type.");
+            if (result.GetType().GetTypeInfo().IsAssignableFrom(typeof(IServiceLogFactory)))
+                throw new InvalidFactoryException("Invalid IServiceLogFactory type.");
 
-			_instance.AddSingleton<IServiceLogFactory>((IServiceLogFactory)result);
-		}
+            _instance.AddSingleton<IServiceLogFactory>((IServiceLogFactory)result);
+        }
 
-		/// <summary>
-		/// Initializes the logging factory. If not specified the logging factory defaults to ProviderLogFactoryNull.
-		/// </summary>
-		public static void InitializeProviderLogFactory(Type type)
-		{
-			Enforce.AgainstNull(() => type);
+        /// <summary>
+        /// Initializes the logging factory. If not specified the logging factory defaults to ProviderLogFactoryNull.
+        /// </summary>
+        public static void InitializeProviderLogFactory(Type type)
+        {
+            Enforce.AgainstNull(() => type);
 
-			if (type.GetTypeInfo().IsAssignableFrom(typeof(IServiceLogFactory)))
-				throw new InvalidFactoryException("Invalid IServiceLogFactory type.");
+            if (type.GetTypeInfo().IsAssignableFrom(typeof(IServiceLogFactory)))
+                throw new InvalidFactoryException("Invalid IServiceLogFactory type.");
 
-			_instance.AddSingleton(typeof(IServiceLogFactory), type);
-		}
+            _instance.AddSingleton(typeof(IServiceLogFactory), type);
+        }
 
-		/// <summary>
-		/// Initializes the log factory. If not specified the log factory defaults to ProviderLogFactoryNull.
-		/// </summary>
-		public static void InitializeProviderLogFactory<TLogFactory>()
-				where TLogFactory : class, IServiceLogFactory
-		{
-			_instance.AddSingleton<IServiceLogFactory, TLogFactory>();
-		}
+        /// <summary>
+        /// Initializes the log factory. If not specified the log factory defaults to ProviderLogFactoryNull.
+        /// </summary>
+        public static void InitializeProviderLogFactory<TLogFactory>()
+                where TLogFactory : class, IServiceLogFactory
+        {
+            _instance.AddSingleton<IServiceLogFactory, TLogFactory>();
+        }
 
-		public static void Reset()
-		{
-			Reset(null);
-		}
+        public static void Reset()
+        {
+            Reset(null);
+        }
 
-		public static void Reset(object root)
-		{
-			_instance = null;
+        public static void Reset(object root)
+        {
+            _instance = null;
 
-			InitializeByAttribute(root);
-		}
+            InitializeByAttribute(root);
+        }
 
-		public static void Reset<TFactory>() where TFactory : Factory
-		{
-			_instance = null;
+        public static void Reset<TFactory>() where TFactory : Factory
+        {
+            _instance = null;
 
-			Initialize<TFactory>();
-		}
+            Initialize<TFactory>();
+        }
 
-		public IServiceLog RetrieveLogger(Type type)
-		{
-			Enforce.AgainstNull(() => type);
+        public IServiceLog RetrieveLogger(Type type)
+        {
+            Enforce.AgainstNull(() => type);
 
-			return LogFactory.RetrieveLogger(type);
-		}
+            return LogFactory.RetrieveLogger(type);
+        }
 
-		public IServiceLog RetrieveLogger(string typeName)
-		{
-			Enforce.AgainstNull(() => typeName);
+        public IServiceLog RetrieveLogger(string typeName)
+        {
+            Enforce.AgainstNull(() => typeName);
 
-			return LogFactory.RetrieveLogger(typeName);
-		}
-		#endregion
+            return LogFactory.RetrieveLogger(typeName);
+        }
+        #endregion
 
-		#region Public Properties
-		public static Factory Instance
-		{
-			get
-			{
-				if (_instance == null)
-					throw new UninitializedFactoryException("Factory has not be initialized.");
+        #region Public Properties
+        public static Factory Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    throw new UninitializedFactoryException("Factory has not be initialized.");
 
-				return _instance;
-			}
-		}
-		#endregion
+                return _instance;
+            }
+        }
+        #endregion
 
-		#region Private Properties
-		private static IServiceLogFactory LogFactory
-		{
-			get
-			{
-				IServiceLogFactory factory = null;
-				try
-				{
-					// Enter the read lock, many threads can get through the read lock
-					LockLog.EnterReadLock();
+        #region Private Properties
+        private static IServiceLogFactory LogFactory
+        {
+            get
+            {
+                IServiceLogFactory factory = null;
+                try
+                {
+                    // Enter the read lock, many threads can get through the read lock
+                    LockLog.EnterReadLock();
 
-					factory = (IServiceLogFactory)Instance.Retrieve<IServiceLogFactory>();
-					// If we have a factory instance, return the instance.
-					if (factory != null)
-						return factory;
-				}
-				finally
-				{
-					LockLog.ExitReadLock();
-				}
+                    factory = (IServiceLogFactory)Instance.Retrieve<IServiceLogFactory>();
+                    // If we have a factory instance, return the instance.
+                    if (factory != null)
+                        return factory;
+                }
+                finally
+                {
+                    LockLog.ExitReadLock();
+                }
 
-				try
-				{
-					// Enter write lock so that we can create the factory instance.
-					LockLog.EnterWriteLock();
+                try
+                {
+                    // Enter write lock so that we can create the factory instance.
+                    LockLog.EnterWriteLock();
 
-					// If we have a factory instance, return the instance.
-					if (factory != null)
-						return factory;
+                    // If we have a factory instance, return the instance.
+                    if (factory != null)
+                        return factory;
 
-					// Double check to see if the factory is still null, if it is another
-					// thread hasn't already beat us to the punch.
-					if (factory == null)
-						//factory = new Services.Log.ServiceLogFactoryNull();
-						factory = new Services.Log.ServiceLogFactoryDefault();
-				}
-				finally
-				{
-					LockLog.ExitWriteLock();
-				}
+                    // Double check to see if the factory is still null, if it is another
+                    // thread hasn't already beat us to the punch.
+                    if (factory == null)
+                        //factory = new Services.Log.ServiceLogFactoryNull();
+                        factory = new Services.Log.ServiceLogFactoryDefault();
+                }
+                finally
+                {
+                    LockLog.ExitWriteLock();
+                }
 
-				return factory;
-			}
-		}
-		#endregion
+                return factory;
+            }
+        }
+        #endregion
 
-		#region Fields
-		private static volatile Factory _instance;
-		public static readonly object Lock = new object();
-		private static readonly ReaderWriterLockSlim LockLog = new ReaderWriterLockSlim();
-		#endregion
-	}
+        #region Fields
+        private static volatile Factory _instance;
+        public static readonly object Lock = new object();
+        private static readonly ReaderWriterLockSlim LockLog = new ReaderWriterLockSlim();
+        #endregion
+    }
 }

@@ -21,24 +21,24 @@ using System;
 
 namespace thZero
 {
-	public sealed class InvalidFactoryException : InvalidOperationException
-	{
-		public InvalidFactoryException() : base() { }
-		public InvalidFactoryException(string message) : base(message) { }
-		public InvalidFactoryException(string message, Exception inner) : base(message, inner) { }
-	}
+    public sealed class InvalidFactoryException : InvalidOperationException
+    {
+        public InvalidFactoryException() : base() { }
+        public InvalidFactoryException(string message) : base(message) { }
+        public InvalidFactoryException(string message, Exception inner) : base(message, inner) { }
+    }
 
-	public sealed class InvalidTypeInversionContainerException : InvalidOperationException
-	{
-		public InvalidTypeInversionContainerException() : base() { }
-		public InvalidTypeInversionContainerException(string message) : base(message) { }
-		public InvalidTypeInversionContainerException(string message, Exception inner) : base(message, inner) { }
-	}
+    public sealed class InvalidTypeInversionContainerException : InvalidOperationException
+    {
+        public InvalidTypeInversionContainerException() : base() { }
+        public InvalidTypeInversionContainerException(string message) : base(message) { }
+        public InvalidTypeInversionContainerException(string message, Exception inner) : base(message, inner) { }
+    }
 
-	public sealed class UninitializedFactoryException : InvalidOperationException
-	{
-		public UninitializedFactoryException() : base() { }
-		public UninitializedFactoryException(string message) : base(message) { }
-		public UninitializedFactoryException(string message, Exception inner) : base(message, inner) { }
-	}
+    public sealed class UninitializedFactoryException : InvalidOperationException
+    {
+        public UninitializedFactoryException() : base() { }
+        public UninitializedFactoryException(string message) : base(message) { }
+        public UninitializedFactoryException(string message, Exception inner) : base(message, inner) { }
+    }
 }

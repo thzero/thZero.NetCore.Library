@@ -23,8 +23,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace thZero.DependencyInjection
 {
-	public sealed class TransientDependencyAttribute : DependencyAttribute
-	{
-		public TransientDependencyAttribute() : base(ServiceLifetime.Transient) { }
-	}
+    public sealed class TransientDependencyAttribute : DependencyAttribute
+    {
+        public TransientDependencyAttribute() : base(ServiceLifetime.Transient) { }
+    }
 }

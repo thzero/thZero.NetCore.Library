@@ -21,12 +21,12 @@ using System;
 
 namespace thZero.Services
 {
-	public interface ILogEventArgs
-	{
-		#region Properties
-		Exception Exception { get; set; }
-		object Message { get; set; }
-		string Method { get; set; }
-		#endregion
-	}
+    public interface ILogEventArgs
+    {
+        #region Properties
+        Exception Exception { get; set; }
+        object Message { get; set; }
+        string Method { get; set; }
+        #endregion
+    }
 }

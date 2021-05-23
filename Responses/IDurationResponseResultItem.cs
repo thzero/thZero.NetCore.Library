@@ -21,14 +21,14 @@ using System;
 
 namespace thZero.Responses
 {
-	public interface IDurationResponseResultItem
-	{
-		long Duration { get; set; }
-		long DurationEnd { get; set; }
-		long DurationFrequency { get; set; }
-		long DurationMilliseconds { get; set; }
-		long DurationStart { get; set; }
-		int? Index { get; set; }
-		string Name { get; set; }
-	}
+    public interface IDurationResponseResultItem
+    {
+        long Duration { get; set; }
+        long DurationEnd { get; set; }
+        long DurationFrequency { get; set; }
+        long DurationMilliseconds { get; set; }
+        long DurationStart { get; set; }
+        int? Index { get; set; }
+        string Name { get; set; }
+    }
 }

@@ -17,14 +17,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
  * ------------------------------------------------------------------------- */
 
-using System;
+using System.Collections.Generic;
 
-namespace thZero.Exceptions
+namespace thZero.Responses
 {
-    public sealed class SecurityException : Exception
+    public interface IDurationResponse
     {
-        public SecurityException() : base() { }
-        public SecurityException(string message) : base(message) { }
-        public SecurityException(string message, Exception inner) : base(message, inner) { }
+        void AddDuration(IDurationResponseResultItem result);
+        void AddDuration(IEnumerable<IDurationResponseResultItem> result);
+        void ClearDurations();
+
+        long Duration { get; set; }
+        long DurationEnd { get; set; }
+        long DurationFrequency { get; set; }
+        long DurationMilliseconds { get; set; }
+        long DurationStart { get; set; }
+        IEnumerable<IDurationResponseResultItem> DurationsAdditional { get; }
+
+#if DEBUG
+        bool IsDebug { get; set; }
+#endif
     }
 }

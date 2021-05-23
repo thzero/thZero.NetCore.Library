@@ -22,76 +22,76 @@ using System.Collections.Generic;
 
 namespace thZero
 {
-	public abstract class FactoryBase
-	{
-		#region Public Methods
-		public abstract void Add(Type type, Type typeInstance, params FactoryConstructorArgument[] parameters);
-		public abstract void Add(Type type, Type typeInstance, string named, params FactoryConstructorArgument[] parameters);
+    public abstract class FactoryBase
+    {
+        #region Public Methods
+        public abstract void Add(Type type, Type typeInstance, params FactoryConstructorArgument[] parameters);
+        public abstract void Add(Type type, Type typeInstance, string named, params FactoryConstructorArgument[] parameters);
 
-		public abstract void Add<TProviderType>(Type typeInstance, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
-		public abstract void Add<TProviderType>(Type typeInstance, string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
+        public abstract void Add<TProviderType>(Type typeInstance, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
+        public abstract void Add<TProviderType>(Type typeInstance, string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
 
-		public abstract void Add<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
-		public abstract void Add<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
+        public abstract void Add<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
+        public abstract void Add<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
 
-		public abstract void AddContext<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
-		public abstract void AddContext<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
+        public abstract void AddContext<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
+        public abstract void AddContext<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
 
-		public abstract void AddSingleton(Type providerType, object provider, params FactoryConstructorArgument[] parameters);
-		public abstract void AddSingleton(Type providerType, object provider, string named, params FactoryConstructorArgument[] parameters);
+        public abstract void AddSingleton(Type providerType, object provider, params FactoryConstructorArgument[] parameters);
+        public abstract void AddSingleton(Type providerType, object provider, string named, params FactoryConstructorArgument[] parameters);
 
-		public abstract void AddSingleton(Type providerType, Type typeInstance, params FactoryConstructorArgument[] parameters);
-		public abstract void AddSingleton(Type providerType, Type typeInstance, string named, params FactoryConstructorArgument[] parameters);
+        public abstract void AddSingleton(Type providerType, Type typeInstance, params FactoryConstructorArgument[] parameters);
+        public abstract void AddSingleton(Type providerType, Type typeInstance, string named, params FactoryConstructorArgument[] parameters);
 
-		public abstract void AddSingleton<TProviderType>(string type, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
-		public abstract void AddSingleton<TProviderType>(string type, string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(string type, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(string type, string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
 
-		public abstract void AddSingleton<TProviderType>(Type typeInstance, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
-		public abstract void AddSingleton<TProviderType>(Type typeInstance, string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(Type typeInstance, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(Type typeInstance, string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
 
-		public abstract void AddSingleton<TProviderType>(TProviderType instanceType, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
-		public abstract void AddSingleton<TProviderType>(TProviderType instanceType, string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(TProviderType instanceType, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
+        public abstract void AddSingleton<TProviderType>(TProviderType instanceType, string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class;
 
-		public abstract void AddSingleton<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
-		public abstract void AddSingleton<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
-				where TProviderType : class
-				where TInstanceType : class, TProviderType;
+        public abstract void AddSingleton<TProviderType, TInstanceType>(params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
+        public abstract void AddSingleton<TProviderType, TInstanceType>(string named, params FactoryConstructorArgument[] parameters)
+                where TProviderType : class
+                where TInstanceType : class, TProviderType;
 
-		public abstract TProviderType Retrieve<TProviderType>();
-		public abstract TProviderType Retrieve<TProviderType>(params FactoryConstructorArgument[] args);
-		public abstract TProviderType Retrieve<TProviderType>(string named);
-		public abstract TProviderType Retrieve<TProviderType>(string named, params FactoryConstructorArgument[] args);
+        public abstract TProviderType Retrieve<TProviderType>();
+        public abstract TProviderType Retrieve<TProviderType>(params FactoryConstructorArgument[] args);
+        public abstract TProviderType Retrieve<TProviderType>(string named);
+        public abstract TProviderType Retrieve<TProviderType>(string named, params FactoryConstructorArgument[] args);
 
-		public abstract object Retrieve(Type providerType);
-		public abstract object Retrieve(Type providerType, params FactoryConstructorArgument[] args);
-		public abstract object Retrieve(Type providerType, string named);
-		public abstract object Retrieve(Type providerType, string named, params FactoryConstructorArgument[] args);
+        public abstract object Retrieve(Type providerType);
+        public abstract object Retrieve(Type providerType, params FactoryConstructorArgument[] args);
+        public abstract object Retrieve(Type providerType, string named);
+        public abstract object Retrieve(Type providerType, string named, params FactoryConstructorArgument[] args);
 
-		public abstract IEnumerable<TProviderType> Retrieves<TProviderType>();
+        public abstract IEnumerable<TProviderType> Retrieves<TProviderType>();
 
-		public abstract IEnumerable<object> Retrieves(Type providerType);
-		#endregion
+        public abstract IEnumerable<object> Retrieves(Type providerType);
+        #endregion
 
-		#region Protected Methods
-		protected internal abstract void InitializeInstance();
-		#endregion
-	}
+        #region Protected Methods
+        protected internal abstract void InitializeInstance();
+        #endregion
+    }
 }

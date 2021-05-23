@@ -21,16 +21,16 @@ using System;
 
 namespace thZero.Responses
 {
-	public class DurationResponseResultItem : IDurationResponseResultItem
-	{
-		#region Public Properties
-		public long Duration { get; set; }
-		public long DurationEnd { get; set; }
-		public long DurationFrequency { get; set; }
-		public long DurationMilliseconds { get; set; }
-		public long DurationStart { get; set; }
-		public int? Index { get; set; }
-		public string Name { get; set; }
-		#endregion
-	}
+    public class DurationResponseResultItem : IDurationResponseResultItem
+    {
+        #region Public Properties
+        public long Duration { get; set; }
+        public long DurationEnd { get; set; }
+        public long DurationFrequency { get; set; }
+        public long DurationMilliseconds { get; set; }
+        public long DurationStart { get; set; }
+        public int? Index { get; set; }
+        public string Name { get; set; }
+        #endregion
+    }
 }

@@ -21,49 +21,49 @@ using System;
 
 namespace thZero.Services
 {
-	public sealed class ServiceVersionInformation : ServiceBase, IServiceVersionInformation
+    public sealed class ServiceVersionInformation : ServiceBase, IServiceVersionInformation
     {
-		#region Public Properties
-		public string ApplicationName { get; set; }
+        #region Public Properties
+        public string ApplicationName { get; set; }
 
-		public DateTime BuildDate { get; set; }
+        public DateTime BuildDate { get; set; }
         public string BuildDateFormatted => string.Format(BuildDateFormat, BuildDate);
 
         public Version Version { get => _version; set => _version = value; }
-		public string VersionFormatted
-		{
-			get
-			{
-				if (!string.IsNullOrEmpty(_versionFormatted))
-					return _versionFormatted;
+        public string VersionFormatted
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_versionFormatted))
+                    return _versionFormatted;
 
-				lock (_lock)
-				{
-					if (!string.IsNullOrEmpty(_versionFormatted))
-						return _versionFormatted;
+                lock (_lock)
+                {
+                    if (!string.IsNullOrEmpty(_versionFormatted))
+                        return _versionFormatted;
 
-					_versionFormatted = Unknown;
-					if (Version == null)
-						return _versionFormatted;
+                    _versionFormatted = Unknown;
+                    if (Version == null)
+                        return _versionFormatted;
 
-					_versionFormatted = string.Concat(Version.Major, Separator, Version.Minor, Separator, Version.Build);
-				}
+                    _versionFormatted = string.Concat(Version.Major, Separator, Version.Minor, Separator, Version.Build);
+                }
 
-				return _versionFormatted;
-			}
-		}
-		#endregion
+                return _versionFormatted;
+            }
+        }
+        #endregion
 
-		#region Fields
-		private static volatile Version _version;
-		private static string _versionFormatted;
-		private static readonly object _lock = new object();
-		#endregion
+        #region Fields
+        private static volatile Version _version;
+        private static string _versionFormatted;
+        private static readonly object _lock = new object();
+        #endregion
 
-		#region Constants
-		private const string BuildDateFormat = "F";
-		private const string Separator = ".";
-		private const string Unknown = "<unknown>";
-		#endregion
-	}
+        #region Constants
+        private const string BuildDateFormat = "F";
+        private const string Separator = ".";
+        private const string Unknown = "<unknown>";
+        #endregion
+    }
 }

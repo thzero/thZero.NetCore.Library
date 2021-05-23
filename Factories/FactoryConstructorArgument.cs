@@ -21,9 +21,9 @@ using System;
 
 namespace thZero
 {
-	public struct FactoryConstructorArgument
-	{
-		public string Key { get; set; }
-		public object Value { get; set; }
-	}
+    public struct FactoryConstructorArgument
+    {
+        public string Key { get; set; }
+        public object Value { get; set; }
+    }
 }

@@ -21,11 +21,11 @@ using System;
 
 namespace thZero
 {
-	[AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class FactoryAttribute : Attribute
-	{
-		#region Public Properties
-		public Type FactoryType { get; set; }
-		#endregion
-	}
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    public sealed class FactoryAttribute : Attribute
+    {
+        #region Public Properties
+        public Type FactoryType { get; set; }
+        #endregion
+    }
 }

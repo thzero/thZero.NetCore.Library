@@ -17,26 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
  * ------------------------------------------------------------------------- */
 
-using System;
-using System.Collections.Generic;
-
 namespace thZero.Responses
 {
-	public interface IDurationRequestResponse : IRequestResponse
-	{
-		void AddDuration(IDurationResponseResultItem result);
-		void AddDuration(IEnumerable<IDurationResponseResultItem> result);
-		void ClearDurations();
-
-		long Duration { get; set; }
-		long DurationEnd { get; set; }
-		long DurationFrequency { get; set; }
-		long DurationMilliseconds { get; set; }
-		long DurationStart { get; set; }
-		IEnumerable<IDurationResponseResultItem> DurationsAdditional { get; }
-
-#if DEBUG
-		bool IsDebug { get; set; }
-#endif
-	}
+    public class ErrorResponse : SuccessResponse
+    {
+        public ErrorResponse() : base(false)
+        {
+        }
+    }
 }

@@ -17,14 +17,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
  * ------------------------------------------------------------------------- */
 
-using System;
-
-namespace thZero.Exceptions
+namespace thZero.Responses
 {
-    public sealed class SecurityException : Exception
+    public struct ErrorMessage
     {
-        public SecurityException() : base() { }
-        public SecurityException(string message) : base(message) { }
-        public SecurityException(string message, Exception inner) : base(message, inner) { }
+        #region Public Properties
+        public string InputElement { get; set; }
+        public string Message { get; set; }
+        #endregion
     }
 }
