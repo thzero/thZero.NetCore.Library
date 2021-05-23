@@ -81,8 +81,8 @@ namespace thZero
                 {
                     FactoryAttribute attribute = null;
 
-                    if (root is System.Reflection.Assembly)
-                        attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>((System.Reflection.Assembly)root);
+                    if (root is Assembly assembly)
+                        attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(assembly);
                     else
                         attribute = Utilities.Attributes.GetCustomAttribute<FactoryAttribute>(root);
 
@@ -189,14 +189,18 @@ namespace thZero
             Initialize<TFactory>();
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public IServiceLog RetrieveLogger(Type type)
+#pragma warning restore CA1822 // Mark members as static
         {
             Enforce.AgainstNull(() => type);
 
             return LogFactory.RetrieveLogger(type);
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public IServiceLog RetrieveLogger(string typeName)
+#pragma warning restore CA1822 // Mark members as static
         {
             Enforce.AgainstNull(() => typeName);
 
@@ -265,8 +269,8 @@ namespace thZero
 
         #region Fields
         private static volatile Factory _instance;
-        public static readonly object Lock = new object();
-        private static readonly ReaderWriterLockSlim LockLog = new ReaderWriterLockSlim();
+        public static readonly object Lock = new();
+        private static readonly ReaderWriterLockSlim LockLog = new();
         #endregion
     }
 }

@@ -243,7 +243,7 @@ namespace thZero
         {
             // [codekaizen: corrected this to check null before checking length.]
             if (buffer == null)
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
 
             Int32 bufLen = buffer.Length;
 

@@ -692,9 +692,9 @@ namespace thZero.Services.Internal
             string temp = string.Empty;
             if ((value is int) || (value is decimal))
             {
-                if ((value is int) && Utilities.Nullable.Is((int)value))
+                if ((value is int @int) && Utilities.Nullable.Is(@int))
                     return string.Empty;
-                if ((value is decimal) && Utilities.Nullable.Is((decimal)value))
+                if ((value is decimal @decimal) && Utilities.Nullable.Is(@decimal))
                     return string.Empty;
 
                 temp = DisplayQuantityCore(value);
@@ -729,20 +729,14 @@ namespace thZero.Services.Internal
 
         protected virtual string DisplayQuantityCore(object value)
         {
-            if (value is string)
+            if (value is string temp)
             {
-                string temp = (string)value;
-
-                bool success = false;
-                int outputInt = 0;
-                decimal outputDecimal = 0;
-
-                success = int.TryParse(temp, out outputInt);
+                bool success = int.TryParse(temp, out int outputInt);
                 if (success)
                     value = outputInt;
                 else
                 {
-                    success = decimal.TryParse(temp, out outputDecimal);
+                    success = decimal.TryParse(temp, out decimal outputDecimal);
                     if (success)
                         value = outputDecimal;
                 }
@@ -751,8 +745,8 @@ namespace thZero.Services.Internal
                     return string.Empty;
             }
 
-            if (value is decimal)
-                value = Convert.ToInt32(Math.Round((decimal)value));
+            if (value is decimal @decimal)
+                value = Convert.ToInt32(Math.Round(@decimal));
 
             if (value is int)
                 return DisplayIntCore(value, null);
@@ -795,8 +789,8 @@ namespace thZero.Services.Internal
 
         protected virtual string DisplayPercentCore(object value)
         {
-            if ((value is decimal) && !Utilities.Nullable.Is(value))
-                return string.Concat(((decimal)value * 100).ToString(DecimalPercentHundredsFormat), Percent);
+            if ((value is decimal @decimal) && !Utilities.Nullable.Is(value))
+                return string.Concat((@decimal * 100).ToString(DecimalPercentHundredsFormat), Percent);
 
             return string.Empty;
         }
@@ -814,28 +808,22 @@ namespace thZero.Services.Internal
 
         protected virtual string DisplayPlaceCore(object value)
         {
-            if (value is int)
-                return Number.ToSentence((int)value);
+            if (value is int @int)
+                return Number.ToSentence(@int);
 
             return string.Empty;
         }
 
         protected virtual string DisplayIntegerCore(object value, int? defaultValue)
         {
-            if (value is string)
+            if (value is string temp)
             {
-                string temp = (string)value;
-
-                bool success = false;
-                int outputInt = 0;
-                decimal outputDecimal = 0;
-
-                success = int.TryParse(temp, out outputInt);
+                bool success = int.TryParse(temp, out int outputInt);
                 if (success)
                     value = outputInt;
                 else
                 {
-                    success = decimal.TryParse(temp, out outputDecimal);
+                    success = decimal.TryParse(temp, out decimal outputDecimal);
                     if (success)
                         value = outputDecimal;
                 }
@@ -860,8 +848,8 @@ namespace thZero.Services.Internal
 
         protected virtual string DisplayTextCore(object value)
         {
-            string valueEx = string.Empty;
-            if (!(value is string))
+            string valueEx;
+            if (value is not string @string)
             {
                 if (value == null)
                     return string.Empty;
@@ -869,7 +857,7 @@ namespace thZero.Services.Internal
                 valueEx = value.ToString();
             }
             else
-                valueEx = (string)value;
+                valueEx = @string;
 
             if (string.IsNullOrEmpty(valueEx))
                 return string.Empty;
@@ -897,8 +885,8 @@ namespace thZero.Services.Internal
 
         protected virtual string DisplayTextWithEllipseCore(object value, int maxLength)
         {
-            string valueEx = string.Empty;
-            if (!(value is string))
+            string valueEx;
+            if (value is not string @string)
             {
                 if (value == null)
                     return string.Empty;
@@ -906,7 +894,7 @@ namespace thZero.Services.Internal
                 valueEx = value.ToString();
             }
             else
-                valueEx = (string)value;
+                valueEx = @string;
 
             if (string.IsNullOrEmpty(valueEx))
                 return string.Empty;
@@ -978,7 +966,7 @@ namespace thZero.Services.Internal
 
         protected static class Number
         {
-            static string[] first = { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st" };
+            static readonly string[] first = { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st" };
 
             /// <summary>
             /// Converts the given number to an english sentence.

@@ -69,7 +69,7 @@ namespace thZero.AspNetCore
             if (ex == null)
                 return string.Empty;
 
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
 
             builder.Append(ex.ToString()).AppendLine();
             builder.AppendLine(ex.StackTrace);

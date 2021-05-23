@@ -40,12 +40,12 @@ namespace thZero
         #region String
         public static bool EndsWithIgnore(this string value, string compare)
         {
-            return (!string.IsNullOrEmpty(value) ? value.EndsWith(compare, StringComparison.OrdinalIgnoreCase) : false);
+            return (!string.IsNullOrEmpty(value) && value.EndsWith(compare, StringComparison.OrdinalIgnoreCase));
         }
 
         public static bool EqualsIgnore(this string value, string compare)
         {
-            return (!string.IsNullOrEmpty(value) ? value.Equals(compare, StringComparison.OrdinalIgnoreCase) : false);
+            return (!string.IsNullOrEmpty(value) && value.Equals(compare, StringComparison.OrdinalIgnoreCase));
         }
 
         public static string Format(this string format, params object[] args)
@@ -72,7 +72,7 @@ namespace thZero
 
         public static bool StartsWithIgnore(this string value, string compare)
         {
-            return (value != null ? value.StartsWith(compare, StringComparison.OrdinalIgnoreCase) : false);
+            return (value != null && value.StartsWith(compare, StringComparison.OrdinalIgnoreCase));
         }
 
         public static string ToCapital(this string value)
@@ -80,7 +80,7 @@ namespace thZero
             if (string.IsNullOrEmpty(value))
                 return value;
 
-            return value.Substring(0, 1).ToUpper() + value.Substring(1);
+            return value.Substring(0, 1).ToUpper() + value[1..];
         }
 
         public static string Truncate(this object value, int max)
@@ -105,7 +105,7 @@ namespace thZero
                 return string.Empty;
 
             if (ellipses && (max > 3) && (truncate.Length > max))
-                max = max - 3;
+                max -= 3;
             else
                 ellipses = false;
 
@@ -146,7 +146,7 @@ namespace thZero
 
         #region Fields
         private static volatile List<char> _whitespaceCharacter;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         #endregion
 
         #region Constants
