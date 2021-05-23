@@ -32,7 +32,7 @@ namespace thZero.Utilities
         {
             Enforce.AgainstNull(() => func);
 
-            List<byte> bytesComputed = new List<byte>();
+            List<byte> bytesComputed = new();
             func(bytesComputed);
 
             byte[] bytes = bytesComputed.ToArray();
@@ -46,7 +46,7 @@ namespace thZero.Utilities
         {
             Enforce.AgainstNull(() => func);
 
-            List<byte> bytesComputed = new List<byte>();
+            List<byte> bytesComputed = new();
             func(bytesComputed);
 
             byte[] bytes = bytesComputed.ToArray();
@@ -68,7 +68,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(bool? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return BitConverter.GetBytes(value.Value);
         }
@@ -108,7 +108,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(byte? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -128,7 +128,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(DateTime? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value.Ticks);
         }
@@ -158,7 +158,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(DateTimeOffset? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value.Ticks);
         }
@@ -205,7 +205,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(decimal? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -235,7 +235,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(double? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -265,7 +265,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(float? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -283,7 +283,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(Guid value)
         {
             if (value == Guid.Empty)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.ToString());
         }
@@ -301,7 +301,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(Guid? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -331,7 +331,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(int? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -361,7 +361,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(long? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -391,7 +391,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(short? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -409,7 +409,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(string value)
         {
             if (string.IsNullOrEmpty(value))
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return System.Text.Encoding.Unicode.GetBytes(value);
         }
@@ -439,7 +439,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(uint? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -469,7 +469,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(ulong? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -499,7 +499,7 @@ namespace thZero.Utilities
         public static byte[] ToBytes(ushort? value)
         {
             if (!value.HasValue)
-                return new byte[] { };
+                return Array.Empty<byte>();
 
             return ToBytes(value.Value);
         }
@@ -550,10 +550,10 @@ namespace thZero.Utilities
         #endregion
 
         #region Fields
-        private static byte[] _none = new byte[] { };
+        private static readonly byte[] _none = Array.Empty<byte>();
         private static volatile byte[] _seperator1 = null;
         private static volatile byte[] _seperator2 = null;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         #endregion
 
         #region Constants
