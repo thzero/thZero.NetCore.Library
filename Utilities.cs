@@ -23,6 +23,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
 
@@ -174,6 +175,55 @@ namespace thZero.Utilities
         }
         #endregion
     }
+    public static class Background
+    {
+        #region Public Methods
+        public static void Run(Action action, Action<Exception> handler = null)
+        {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
+            Task task = Task.Run(action);  // Adapt as necessary for .NET 4.0.
+            if (handler != null)
+            {
+                task.ContinueWith(
+                    t => handler(t.Exception.GetBaseException()),
+                    TaskContinuationOptions.ExecuteSynchronously |
+                    TaskContinuationOptions.OnlyOnFaulted);
+                return;
+            }
+
+            task.ContinueWith(
+                DefaultErrorContinuation,
+                TaskContinuationOptions.ExecuteSynchronously |
+                TaskContinuationOptions.OnlyOnFaulted);
+        }
+        #endregion
+
+        #region Private Methods
+        private static readonly Action<Task> DefaultErrorContinuation =
+            t =>
+            {
+                try { t.Wait(); }
+                catch { }
+            };
+        #endregion
+    }
+
+    public class DateTime
+    {
+        #region Public Methods
+        public static long Timestamp
+        {
+            get { return TimestampFromDateTime(System.DateTime.UtcNow);  }
+        }
+
+        public static long TimestampFromDateTime(System.DateTime dateTime)
+        {
+            return new DateTimeOffset(dateTime).ToUnixTimeMilliseconds();
+        }
+        #endregion
+    }
 
     public static class General
     {
@@ -256,11 +306,11 @@ namespace thZero.Utilities
             if (value is byte?)
                 return ((value == null) || !((byte?)value).HasValue);
 
-            if (value is DateTime)
-                return (DateTime)value == DateTime.MinValue;
+            if (value is System.DateTime)
+                return (System.DateTime)value == System.DateTime.MinValue;
 
-            if (value is DateTime?)
-                return ((value == null) || !((DateTime?)value).HasValue);
+            if (value is System.DateTime?)
+                return ((value == null) || !((System.DateTime?)value).HasValue);
 
             if (value is decimal)
                 return (decimal)value == decimal.MinValue;
@@ -426,8 +476,8 @@ namespace thZero.Utilities
                 data.TimingType = type;
                 data.LogTypeLocation = logTypeLocation;
                 data.LogTypeSpecific = logTypeSpecific;
-                data.EndTime = DateTime.MinValue;
-                data.StartTime = DateTime.UtcNow;
+                data.EndTime = System.DateTime.MinValue;
+                data.StartTime = System.DateTime.UtcNow;
                 if (data.Watch.IsRunning)
                     data.Watch.Restart();
                 else
@@ -490,7 +540,7 @@ namespace thZero.Utilities
             if (data != null)
             {
                 data.Watch.Stop();
-                data.EndTime = DateTime.UtcNow;
+                data.EndTime = System.DateTime.UtcNow;
             }
 
             return data;
@@ -595,8 +645,8 @@ namespace thZero.Utilities
     {
         public StopwatchTiming()
         {
-            EndTime = DateTime.MinValue;
-            StartTime = DateTime.MinValue;
+            EndTime = System.DateTime.MinValue;
+            StartTime = System.DateTime.MinValue;
             Watch = new System.Diagnostics.Stopwatch();
         }
 
@@ -629,7 +679,7 @@ namespace thZero.Utilities
             }
         }
 
-        public DateTime EndTime
+        public System.DateTime EndTime
         {
             get;
             protected internal set;
@@ -665,7 +715,7 @@ namespace thZero.Utilities
             protected internal set;
         }
 
-        public DateTime StartTime
+        public System.DateTime StartTime
         {
             get;
             protected internal set;
@@ -696,11 +746,13 @@ namespace thZero.Utilities
             Counter = 0;
         }
 
+        #region Public Methods
         public StopwatchDurationIndex Increment()
         {
             Counter++;
             return this;
         }
+        #endregion
 
         #region Public Properties
         public int Counter { get; private set; }

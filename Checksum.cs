@@ -113,19 +113,19 @@ namespace thZero.Utilities
             return ToBytes(value.Value);
         }
 
-        public static byte[] ToBytes(DateTime value)
+        public static byte[] ToBytes(System.DateTime value)
         {
             return BitConverter.GetBytes(value.Ticks);
         }
 
-        public static byte[] ToBytes(string name, DateTime value)
+        public static byte[] ToBytes(string name, System.DateTime value)
         {
             Enforce.AgainstNullOrEmpty(() => name);
 
             return ToBytes(name, ToBytes(value));
         }
 
-        public static byte[] ToBytes(DateTime? value)
+        public static byte[] ToBytes(System.DateTime? value)
         {
             if (!value.HasValue)
                 return Array.Empty<byte>();
@@ -133,7 +133,7 @@ namespace thZero.Utilities
             return ToBytes(value.Value.Ticks);
         }
 
-        public static byte[] ToBytes(string name, DateTime? value)
+        public static byte[] ToBytes(string name, System.DateTime? value)
         {
             Enforce.AgainstNullOrEmpty(() => name);
 
