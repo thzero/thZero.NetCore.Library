@@ -189,18 +189,14 @@ namespace thZero
             Initialize<TFactory>();
         }
 
-#pragma warning disable CA1822 // Mark members as static
         public IServiceLog RetrieveLogger(Type type)
-#pragma warning restore CA1822 // Mark members as static
         {
             Enforce.AgainstNull(() => type);
 
             return LogFactory.RetrieveLogger(type);
         }
 
-#pragma warning disable CA1822 // Mark members as static
         public IServiceLog RetrieveLogger(string typeName)
-#pragma warning restore CA1822 // Mark members as static
         {
             Enforce.AgainstNull(() => typeName);
 
