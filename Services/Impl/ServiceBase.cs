@@ -20,6 +20,7 @@ limitations under the License.
 using System;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 using thZero.Instrumentation;
 using thZero.Responses;
@@ -87,6 +88,11 @@ namespace thZero.Services
         {
             return new SuccessResponse();
         }
+
+        protected SuccessResponse Success(bool success)
+        {
+            return new SuccessResponse(success);
+        }
         #endregion
     }
 
@@ -99,6 +105,19 @@ namespace thZero.Services
 
         #region Protected Properties
         protected ILogger<TService> Logger { get; private set; }
+        #endregion
+    }
+
+    public abstract class ConfigServiceBase<TService, TConfig> : ServiceBase<TService>, IService
+        where TConfig: class
+    {
+        public ConfigServiceBase(IOptions<TConfig> config, ILogger<TService> logger) : base(logger)
+        {
+            Config = config.Value;
+        }
+
+        #region Protected Properties
+        protected TConfig Config { get; private set; }
         #endregion
     }
 }
