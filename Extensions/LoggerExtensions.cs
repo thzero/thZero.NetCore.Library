@@ -22,7 +22,7 @@ using System.Text;
 
 using Microsoft.Extensions.Logging;
 
-namespace thZero.AspNetCore
+namespace thZero
 {
     public static class LoggerExtensions
     {
@@ -52,6 +52,16 @@ namespace thZero.AspNetCore
             return string.Concat(method, SeparatorColon, message, SeparatorComma, FormatException(ex));
         }
 
+        public static void LogDebug(this ILogger logger, string method, string attribute, object value)
+        {
+            logger?.LogDebug(LogFormat(logger, method, attribute, value));
+        }
+
+        public static void LogDebug(this ILogger logger, string method, string attribute, Func<object> func)
+        {
+            logger?.LogDebug(LogFormat(logger, method, attribute, func));
+        }
+
         public static void LogError(this ILogger logger, string method, Exception ex)
         {
             logger?.LogError(LogFormat(logger, method, ex));
@@ -60,6 +70,16 @@ namespace thZero.AspNetCore
         public static void LogError(this ILogger logger, string method, string message, Exception ex)
         {
             logger?.LogError(LogFormat(logger, method, ex));
+        }
+
+        public static void LogWarning(this ILogger logger, string method, Exception ex)
+        {
+            logger?.LogWarning(LogFormat(logger, method, ex));
+        }
+
+        public static void LogWarning(this ILogger logger, string method, string message, Exception ex)
+        {
+            logger?.LogWarning(LogFormat(logger, method, ex));
         }
         #endregion
 
