@@ -19,7 +19,7 @@ limitations under the License.
 
 using System;
 
-namespace thZero.Responses
+namespace thZero.Requests
 {
     public class EditRequest : BaseRequest
     {
