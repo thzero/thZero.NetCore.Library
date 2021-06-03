@@ -52,32 +52,37 @@ namespace thZero
             return string.Concat(method, SeparatorColon, message, SeparatorComma, FormatException(ex));
         }
 
-        public static void LogDebug(this ILogger logger, string method, string attribute, object value)
+        public static void LogDebug2(this ILogger logger, string method, string attribute, object value)
         {
             logger?.LogDebug(LogFormat(logger, method, attribute, value));
         }
 
-        public static void LogDebug(this ILogger logger, string method, string attribute, Func<object> func)
+        public static void LogDebug2(this ILogger logger, string method, string attribute, Func<object> func)
         {
             logger?.LogDebug(LogFormat(logger, method, attribute, func));
         }
 
-        public static void LogError(this ILogger logger, string method, Exception ex)
+        public static void LogError2(this ILogger logger, string method, Exception ex)
         {
             logger?.LogError(LogFormat(logger, method, ex));
         }
 
-        public static void LogError(this ILogger logger, string method, string message, Exception ex)
+        public static void LogError2(this ILogger logger, string method, string message, Exception ex)
         {
             logger?.LogError(LogFormat(logger, method, ex));
         }
 
-        public static void LogWarning(this ILogger logger, string method, Exception ex)
+        public static void LogInformation2(this ILogger logger, string method, string message)
+        {
+            logger?.LogInformation(LogFormat(logger, method, message));
+        }
+
+        public static void LogWarning2(this ILogger logger, string method, Exception ex)
         {
             logger?.LogWarning(LogFormat(logger, method, ex));
         }
 
-        public static void LogWarning(this ILogger logger, string method, string message, Exception ex)
+        public static void LogWarning2(this ILogger logger, string method, string message, Exception ex)
         {
             logger?.LogWarning(LogFormat(logger, method, ex));
         }
