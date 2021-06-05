@@ -21,6 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -288,6 +291,61 @@ namespace thZero.Utilities
         public static double RoundUp(double number, int decimalPlaces)
         {
             return System.Math.Ceiling(number * System.Math.Pow(10, decimalPlaces)) / System.Math.Pow(10, decimalPlaces);
+        }
+        #endregion
+    }
+
+    public static class Network
+    {
+        #region Public Methods
+        public static ICollection<IPAddress> GetAllLocal(NetworkInterfaceType _type)
+        {
+            UnicastIPAddressInformation mostSuitableIp = null;
+            ICollection<IPAddress> ipAddrList = new List<IPAddress>();
+            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (!(item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up))
+                    continue;
+
+                var properties = item.GetIPProperties();
+                if (properties.GatewayAddresses.Count == 0)
+                    continue;
+
+                foreach (UnicastIPAddressInformation ip in properties.UnicastAddresses)
+                {
+                    if (ip.Address.AddressFamily != AddressFamily.InterNetwork)
+                        continue;
+
+                    if (IPAddress.IsLoopback(ip.Address))
+                        continue;
+
+                    // If address is not a DNS Eligible, it is a reserved internal IP. It is not the internet provider host.
+                    if (!ip.IsDnsEligible)
+                    {
+                        if (mostSuitableIp == null)
+                            mostSuitableIp = ip;
+                        continue;
+                    }
+
+                    // The best IP is the IP got from DHCP server
+                    // And if PrefixOrigin was suplied by a DHCP server, possible this is the best address choice.
+                    if (ip.PrefixOrigin != PrefixOrigin.Dhcp)
+                    {
+                        if (mostSuitableIp == null || !mostSuitableIp.IsDnsEligible)
+                            mostSuitableIp = ip;
+                        continue;
+                    }
+
+                    ipAddrList.Add(ip.Address);
+                }
+            }
+
+            return ipAddrList;
+        }
+
+        public static ICollection<IPAddress> GetAllLocal()
+        {
+            return GetAllLocal(NetworkInterfaceType.Ethernet);
         }
         #endregion
     }
