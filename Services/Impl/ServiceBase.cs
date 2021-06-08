@@ -37,7 +37,7 @@ namespace thZero.Services
 
         protected ErrorResponse Error(string message, params object[] args)
         {
-            ErrorResponse error = new ErrorResponse();
+            ErrorResponse error = new();
             error.AddError(message, args);
             return error;
         }

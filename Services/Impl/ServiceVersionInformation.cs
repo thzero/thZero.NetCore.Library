@@ -57,7 +57,7 @@ namespace thZero.Services
         #region Fields
         private static volatile Version _version;
         private static string _versionFormatted;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         #endregion
 
         #region Constants

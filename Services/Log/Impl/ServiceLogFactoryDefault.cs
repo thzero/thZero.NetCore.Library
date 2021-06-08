@@ -498,7 +498,7 @@ namespace thZero.Services.Log
 
         private string Format(Exception ex)
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             while (ex != null)
             {
                 builder.AppendLine(ex.Message);
@@ -509,7 +509,7 @@ namespace thZero.Services.Log
         #endregion
 
         #region Fields
-        private ILogger _logger = null;
+        private readonly ILogger _logger = null;
         #endregion
 
         #region Constants

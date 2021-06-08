@@ -97,7 +97,7 @@ namespace thZero.Utilities
         public static T CreateInstance<T>(string assemblyName, string type, params object[] args)
         {
             if (string.IsNullOrEmpty(assemblyName) || string.IsNullOrEmpty(type))
-                return default(T);
+                return default;
 
             type = string.Concat(assemblyName, ",", type);
 
@@ -107,7 +107,7 @@ namespace thZero.Utilities
         public static T CreateInstance<T>(Assembly assembly, string type, params object[] args)
         {
             if ((assembly == null) || string.IsNullOrEmpty(type))
-                return default(T);
+                return default;
 
             return CreateInstance<T>(assembly.FullName, type, args);
         }
@@ -115,7 +115,7 @@ namespace thZero.Utilities
         public static T CreateInstance<T>(Type type, params object[] args)
         {
             if (type == null)
-                return default(T);
+                return default;
 
             return (T)System.Activator.CreateInstance(type);
         }
@@ -517,11 +517,13 @@ namespace thZero.Utilities
             if (!log.IsDiagnosticEnabled)
                 return null;
 
-            StopwatchTiming data = null;
+            StopwatchTiming data;
             if (!_list.ContainsKey(id))
             {
-                data = new StopwatchTiming();
-                data.Id = id;
+                data = new StopwatchTiming
+                {
+                    Id = id
+                };
                 _list.Add(id, data);
             }
             else
@@ -665,7 +667,7 @@ namespace thZero.Utilities
             if (!log.IsDiagnosticEnabled)
                 return null;
 
-            StringBuilder output = new StringBuilder();
+            StringBuilder output = new();
 
             foreach (KeyValuePair<Guid, StopwatchTiming> pair in _list)
             {
@@ -681,8 +683,7 @@ namespace thZero.Utilities
         #endregion
 
         #region Fields
-        private static Dictionary<Guid, StopwatchTiming> _list = new Dictionary<Guid, StopwatchTiming>();
-        private static readonly object _lock = new object();
+        private static readonly Dictionary<Guid, StopwatchTiming> _list = new();
         #endregion
 
         #region Constants
