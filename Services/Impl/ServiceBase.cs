@@ -93,6 +93,13 @@ namespace thZero.Services
         {
             return new SuccessResponse(success);
         }
+
+        protected SuccessResponse Success(bool success, string message)
+        {
+            SuccessResponse response = new SuccessResponse(success);
+            response.AddError(message);
+            return response;
+        }
         #endregion
     }
 

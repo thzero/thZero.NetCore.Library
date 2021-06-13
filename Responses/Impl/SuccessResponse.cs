@@ -63,7 +63,7 @@ namespace thZero.Responses
 
         public bool Success
         {
-            get => (_messages.Count > 0) || _success;
+            get => (_messages.Count == 0) || _success;
             set => _success = value;
         }
         #endregion

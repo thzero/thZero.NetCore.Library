@@ -32,6 +32,11 @@ namespace thZero
             return string.Concat(method, SeparatorColon, message);
         }
 
+        public static string LogFormat(this ILogger logger, string method, Func<object> func)
+        {
+            return string.Concat(method, SeparatorColon, (func != null ? func() : null));
+        }
+
         public static string LogFormat(this ILogger logger, string method, string attribute, object value)
         {
             return string.Concat(method, SeparatorColon, attribute, SeparatorColon, (value != null ? value.ToString() : Null));
@@ -52,6 +57,11 @@ namespace thZero
             return string.Concat(method, SeparatorColon, message, SeparatorComma, FormatException(ex));
         }
 
+        public static void LogDebug2(this ILogger logger, string method, Func<object> func)
+        {
+            logger?.LogDebug(LogFormat(logger, method, func));
+        }
+
         public static void LogDebug2(this ILogger logger, string method, string attribute, object value)
         {
             logger?.LogDebug(LogFormat(logger, method, attribute, value));
@@ -67,14 +77,24 @@ namespace thZero
             logger?.LogError(LogFormat(logger, method, ex));
         }
 
+        public static void LogError2(this ILogger logger, string method, Func<object> func)
+        {
+            logger?.LogWarning(LogFormat(logger, method, func));
+        }
+
         public static void LogError2(this ILogger logger, string method, string message, Exception ex)
         {
-            logger?.LogError(LogFormat(logger, method, ex));
+            logger?.LogError(LogFormat(logger, method, message, ex));
         }
 
         public static void LogInformation2(this ILogger logger, string method, string message)
         {
             logger?.LogInformation(LogFormat(logger, method, message));
+        }
+
+        public static void LogInformation2(this ILogger logger, string method, Func<object> func)
+        {
+            logger?.LogInformation(LogFormat(logger, method, func));
         }
 
         public static void LogWarning2(this ILogger logger, string method, Exception ex)
@@ -84,7 +104,12 @@ namespace thZero
 
         public static void LogWarning2(this ILogger logger, string method, string message, Exception ex)
         {
-            logger?.LogWarning(LogFormat(logger, method, ex));
+            logger?.LogWarning(LogFormat(logger, method, message, ex));
+        }
+
+        public static void LogWarning2(this ILogger logger, string method, Func<object> func)
+        {
+            logger?.LogWarning(LogFormat(logger, method, func));
         }
         #endregion
 

@@ -302,7 +302,8 @@ namespace thZero.Utilities
         {
             UnicastIPAddressInformation mostSuitableIp = null;
             ICollection<IPAddress> ipAddrList = new List<IPAddress>();
-            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            NetworkInterface[] items = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface item in items)
             {
                 if (!(item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up))
                     continue;
@@ -343,9 +344,14 @@ namespace thZero.Utilities
             return ipAddrList;
         }
 
-        public static ICollection<IPAddress> GetAllLocal()
+        public static ICollection<IPAddress> GetAllLocalEthernet()
         {
             return GetAllLocal(NetworkInterfaceType.Ethernet);
+        }
+
+        public static ICollection<IPAddress> GetAllLocalWireless()
+        {
+            return GetAllLocal(NetworkInterfaceType.Wireless80211);
         }
         #endregion
     }
