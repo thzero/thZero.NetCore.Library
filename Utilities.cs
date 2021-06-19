@@ -438,8 +438,8 @@ namespace thZero.Utilities
             if (value == null)
                 return true;
 
-            if (value is int)
-                return (((int)value == int.MinValue) || ((int)value <= 0));
+            if (value is int @int)
+                return ((@int == int.MinValue) || (@int <= 0));
 
             if (value is int?)
                 return ((value == null) || !((int?)value).HasValue);
