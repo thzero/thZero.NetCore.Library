@@ -364,68 +364,68 @@ namespace thZero.Utilities
             if (value == null)
                 return true;
 
-            if (value is byte)
-                return (byte)value == byte.MinValue;
+            if (value is byte @byte)
+                return @byte == byte.MinValue;
 
             if (value is byte?)
                 return ((value == null) || !((byte?)value).HasValue);
 
-            if (value is System.DateTime)
-                return (System.DateTime)value == System.DateTime.MinValue;
+            if (value is System.DateTime time)
+                return time == System.DateTime.MinValue;
 
             if (value is System.DateTime?)
                 return ((value == null) || !((System.DateTime?)value).HasValue);
 
-            if (value is decimal)
-                return (decimal)value == decimal.MinValue;
+            if (value is decimal @decimal)
+                return @decimal == decimal.MinValue;
 
             if (value is decimal?)
                 return ((value == null) || !((decimal?)value).HasValue);
 
-            if (value is double)
-                return (double)value == double.MinValue;
+            if (value is double @double)
+                return @double == double.MinValue;
 
             if (value is double?)
                 return ((value == null) || !((double?)value).HasValue);
 
-            if (value is float)
-                return (float)value == float.MinValue;
+            if (value is float single)
+                return single == float.MinValue;
 
             if (value is float?)
                 return ((value == null) || !((float?)value).HasValue);
 
-            if (value is int)
-                return (int)value == int.MinValue;
+            if (value is int @int)
+                return @int == int.MinValue;
 
             if (value is int?)
                 return ((value == null) || !((int?)value).HasValue);
 
-            if (value is long)
-                return (long)value == long.MinValue;
+            if (value is long int1)
+                return int1 == long.MinValue;
 
             if (value is long?)
                 return ((value == null) || !((long?)value).HasValue);
 
-            if (value is short)
-                return (short)value == short.MinValue;
+            if (value is short int2)
+                return int2 == short.MinValue;
 
             if (value is short?)
                 return ((value == null) || !((short?)value).HasValue);
 
-            if (value is uint)
-                return (uint)value == uint.MinValue;
+            if (value is uint int3)
+                return int3 == uint.MinValue;
 
             if (value is uint?)
                 return ((value == null) || !((uint?)value).HasValue);
 
-            if (value is ulong)
-                return (ulong)value == ulong.MinValue;
+            if (value is ulong int4)
+                return int4 == ulong.MinValue;
 
             if (value is ulong?)
                 return ((value == null) || !((ulong?)value).HasValue);
 
-            if (value is ushort)
-                return (ushort)value == ushort.MinValue;
+            if (value is ushort int5)
+                return int5 == ushort.MinValue;
 
             if (value is ushort?)
                 return ((value == null) || !((ushort?)value).HasValue);
@@ -682,6 +682,7 @@ namespace thZero.Utilities
                     continue;
 
                 output.AppendLine(Time(data));
+                logger?.LogInformation(Time(data));
             }
 
             return output.ToString();
@@ -718,15 +719,15 @@ namespace thZero.Utilities
         #region Public Properties
         public long ElpasedTicks => Watch.ElapsedTicks;
 
-        public long ElapsedTicksFrequencyMilliseconds => System.Diagnostics.Stopwatch.Frequency / 1000;
+        public static long ElapsedTicksFrequencyMilliseconds => System.Diagnostics.Stopwatch.Frequency / 1000;
 
-        public long ElapsedTicksFrequencySeconds => System.Diagnostics.Stopwatch.Frequency;
+        public static long ElapsedTicksFrequencySeconds => System.Diagnostics.Stopwatch.Frequency;
 
         public long ElapsedMilliseconds => Watch.ElapsedMilliseconds;
 
         public TimeSpan ElapsedTime => Watch.Elapsed;
 
-        public long ElapsedTimeTicks => TimeSpan.TicksPerMillisecond;
+        public static long ElapsedTimeTicks => TimeSpan.TicksPerMillisecond;
 
         public string ElapsedTimeDisplay
         {

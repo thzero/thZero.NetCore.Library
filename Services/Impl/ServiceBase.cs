@@ -30,26 +30,26 @@ namespace thZero.Services
     public abstract class ServiceBase : IService
     {
         #region Protected Methods
-        protected ErrorResponse Error()
+        protected static ErrorResponse Error()
         {
             return new ErrorResponse();
         }
 
-        protected ErrorResponse Error(string message, params object[] args)
+        protected static ErrorResponse Error(string message, params object[] args)
         {
             ErrorResponse error = new();
             error.AddError(message, args);
             return error;
         }
 
-        protected TResult Error<TResult>(TResult result)
+        protected static TResult Error<TResult>(TResult result)
              where TResult : SuccessResponse
         {
             result.Success = false;
             return result;
         }
 
-        protected TResult Error<TResult>(TResult result, string message, params object[] args)
+        protected static TResult Error<TResult>(TResult result, string message, params object[] args)
              where TResult : SuccessResponse
         {
             result.AddError(message, args);
@@ -63,7 +63,7 @@ namespace thZero.Services
         /// <param name="provider"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected IInstrumentationPacket GetInstrumentationPacket(IServiceProvider provider)
+        protected static IInstrumentationPacket GetInstrumentationPacket(IServiceProvider provider)
         {
             return provider != null ? (IInstrumentationPacket)GetService(provider, typeof(IInstrumentationPacket)) : null;
         }
@@ -74,27 +74,27 @@ namespace thZero.Services
         /// <param name="provider"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected object GetService(IServiceProvider provider, Type type)
+        protected static object GetService(IServiceProvider provider, Type type)
         {
             return provider?.GetService(type);
         }
 
-        protected bool IsSuccess(SuccessResponse response)
+        protected static bool IsSuccess(SuccessResponse response)
         {
             return (response != null) && response.Success;
         }
 
-        protected SuccessResponse Success()
+        protected static SuccessResponse Success()
         {
             return new SuccessResponse();
         }
 
-        protected SuccessResponse Success(bool success)
+        protected static SuccessResponse Success(bool success)
         {
             return new SuccessResponse(success);
         }
 
-        protected SuccessResponse Success(bool success, string message)
+        protected static SuccessResponse Success(bool success, string message)
         {
             SuccessResponse response = new SuccessResponse(success);
             response.AddError(message);
