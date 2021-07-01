@@ -97,6 +97,11 @@ namespace thZero
             logger?.LogInformation(LogFormat(logger, method, func));
         }
 
+        public static void LogWarning2(this ILogger logger, string method, string message)
+        {
+            logger?.LogWarning(LogFormat(logger, method, message));
+        }
+
         public static void LogWarning2(this ILogger logger, string method, Exception ex)
         {
             logger?.LogWarning(LogFormat(logger, method, ex));
