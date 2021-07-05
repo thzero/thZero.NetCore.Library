@@ -465,38 +465,38 @@ namespace thZero.Services.Log
         #endregion
 
         #region Private Methods
-        private string Format(object message)
+        private static string Format(object message)
         {
             return (message != null ? message.ToString() : Null);
         }
 
-        private string Format(string method, object message)
+        private static string Format(string method, object message)
         {
             message = (message != null ? message.ToString() : Null);
             return string.Concat(method, SpacerSpace, message);
         }
 
-        private string Format(string method, object message, object value)
+        private static string Format(string method, object message, object value)
         {
             message = (message != null ? message.ToString() : Null);
             value = (value != null ? value.ToString() : Null);
             return string.Concat(method, SpacerSpace, message, SpacerColon, SpacerSpace, value);
         }
 
-        private string Format(string method, Exception ex)
+        private static string Format(string method, Exception ex)
         {
             string exS = Format(ex);
             return string.Concat(method, SpacerSpace, (!string.IsNullOrEmpty(exS) ? Environment.NewLine : string.Empty), exS);
         }
 
-        private string Format(string method, object message, Exception ex)
+        private static string Format(string method, object message, Exception ex)
         {
             message = (message != null ? message.ToString() : Null);
             string exS = Format(ex);
             return string.Concat(method, SpacerSpace, message, (!string.IsNullOrEmpty(exS) ? Environment.NewLine : string.Empty), exS);
         }
 
-        private string Format(Exception ex)
+        private static string Format(Exception ex)
         {
             StringBuilder builder = new();
             while (ex != null)
@@ -515,7 +515,6 @@ namespace thZero.Services.Log
         #region Constants
         private const string Null = "<null>";
         private const string SpacerColon = ":";
-        private const string SpacerPeriod = ".";
         private const string SpacerSpace = " ";
         #endregion
     }

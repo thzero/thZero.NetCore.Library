@@ -24,67 +24,89 @@ namespace thZero.Services.Log
     public abstract class ServiceLogBase
     {
         #region Public Properties
+#pragma warning disable CA1822 // Mark members as static
         public bool IsDebugEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isDebug; }
             set { _isDebug = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsDiagnosticEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isDiagnostic; }
             set { _isDiagnostic = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsErrorEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isError; }
             set { _isError = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsFatalEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isFatal; }
             set { _isFatal = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsInfoEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isInfo; }
             set { _isInfo = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsQueryEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isQuery; }
             set { _isQuery = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsSecurityEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isSecurity; }
             set { _isSecurity = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsTimingEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isTiming; }
             set { _isTiming = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsTraceEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isTrace; }
             set { _isTrace = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsVerboseEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isVerbose; }
             set { _isVerbose = value; }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public bool IsWarnEnabled
+#pragma warning restore CA1822 // Mark members as static
         {
             get { return _isWarn; }
             set { _isWarn = value; }
