@@ -20,13 +20,24 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 
+using thZero.Instrumentation;
+
 namespace thZero.Responses
 {
     public class SuccessResponse : BaseResponse
     {
         public SuccessResponse() { }
+        public SuccessResponse(IInstrumentationPacket instrumentation) 
+        {
+            Instrumentation = instrumentation;
+        }
         public SuccessResponse(bool success)
         {
+            _success = success;
+        }
+        public SuccessResponse(IInstrumentationPacket instrumentation, bool success)
+        {
+            Instrumentation = instrumentation;
             _success = success;
         }
 
@@ -59,6 +70,8 @@ namespace thZero.Responses
         #endregion
 
         #region Public Properties
+        public IInstrumentationPacket Instrumentation { get; set; }
+
         public IEnumerable<ErrorMessage> Messages => _messages;
 
         public bool Success
@@ -76,6 +89,11 @@ namespace thZero.Responses
 
     public class SuccessResponse<T> : SuccessResponse
     {
+        public SuccessResponse() : base() { }
+        public SuccessResponse(IInstrumentationPacket instrumentation) : base(instrumentation) { }
+        public SuccessResponse(bool success) : base(success) { }
+        public SuccessResponse(IInstrumentationPacket instrumentation, bool success) : base(instrumentation, success) { }
+
         #region Public Properties
         public T Data { get; set; }
         #endregion

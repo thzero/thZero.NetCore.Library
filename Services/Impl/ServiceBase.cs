@@ -30,26 +30,48 @@ namespace thZero.Services
     public abstract class ServiceBase : IService
     {
         #region Protected Methods
-        protected static ErrorResponse Error()
+        protected ErrorResponse Error(IInstrumentationPacket instrumentation = null)
         {
             return new ErrorResponse();
         }
 
-        protected static ErrorResponse Error(string message, params object[] args)
+        protected ErrorResponse Error(string message, params object[] args)
         {
             ErrorResponse error = new();
             error.AddError(message, args);
             return error;
         }
 
-        protected static TResult Error<TResult>(TResult result)
+        protected ErrorResponse Error(IInstrumentationPacket instrumentation, string message, params object[] args)
+        {
+            ErrorResponse error = new();
+            error.AddError(message, args);
+            return error;
+        }
+
+        protected TResult Error<TResult>(TResult result)
              where TResult : SuccessResponse
         {
             result.Success = false;
             return result;
         }
 
-        protected static TResult Error<TResult>(TResult result, string message, params object[] args)
+        protected TResult Error<TResult>(IInstrumentationPacket instrumentation, TResult result)
+             where TResult : SuccessResponse
+        {
+            result.Success = false;
+            return result;
+        }
+
+        protected TResult Error<TResult>(TResult result, string message, params object[] args)
+             where TResult : SuccessResponse
+        {
+            result.AddError(message, args);
+            result.Success = false;
+            return result;
+        }
+
+        protected TResult Error<TResult>(IInstrumentationPacket instrumentation, TResult result, string message, params object[] args)
              where TResult : SuccessResponse
         {
             result.AddError(message, args);
@@ -79,24 +101,44 @@ namespace thZero.Services
             return provider?.GetService(type);
         }
 
+        protected static bool IsFailure(SuccessResponse response)
+        {
+            if (response == null)
+                return true;
+            
+            return !response.Success;
+        }
+
         protected static bool IsSuccess(SuccessResponse response)
         {
             return (response != null) && response.Success;
         }
 
-        protected static SuccessResponse Success()
+        protected SuccessResponse Success(IInstrumentationPacket instrumentation = null)
         {
-            return new SuccessResponse();
+            return new SuccessResponse(instrumentation);
         }
 
-        protected static SuccessResponse Success(bool success)
+        protected SuccessResponse Success(bool success)
         {
             return new SuccessResponse(success);
         }
 
-        protected static SuccessResponse Success(bool success, string message)
+        protected SuccessResponse Success(IInstrumentationPacket instrumentation, bool success)
         {
-            SuccessResponse response = new SuccessResponse(success);
+            return new SuccessResponse(instrumentation, success);
+        }
+
+        protected SuccessResponse Success(bool success, string message)
+        {
+            SuccessResponse response = new(success);
+            response.AddError(message);
+            return response;
+        }
+
+        protected SuccessResponse Success(IInstrumentationPacket instrumentation, bool success, string message)
+        {
+            SuccessResponse response = new(instrumentation, success);
             response.AddError(message);
             return response;
         }

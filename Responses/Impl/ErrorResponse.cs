@@ -19,11 +19,16 @@ limitations under the License.
 
 using System;
 
+using thZero.Instrumentation;
+
 namespace thZero.Responses
 {
     public class ErrorResponse : SuccessResponse
     {
         public ErrorResponse() : base(false)
+        {
+        }
+        public ErrorResponse(IInstrumentationPacket instrumentation) : base(instrumentation, false)
         {
         }
     }
