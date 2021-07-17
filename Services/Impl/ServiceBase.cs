@@ -44,7 +44,7 @@ namespace thZero.Services
 
         protected ErrorResponse Error(IInstrumentationPacket instrumentation, string message, params object[] args)
         {
-            ErrorResponse error = new();
+            ErrorResponse error = new(instrumentation);
             error.AddError(message, args);
             return error;
         }
@@ -59,6 +59,7 @@ namespace thZero.Services
         protected TResult Error<TResult>(IInstrumentationPacket instrumentation, TResult result)
              where TResult : SuccessResponse
         {
+            result.Instrumentation = instrumentation;
             result.Success = false;
             return result;
         }
@@ -74,7 +75,27 @@ namespace thZero.Services
         protected TResult Error<TResult>(IInstrumentationPacket instrumentation, TResult result, string message, params object[] args)
              where TResult : SuccessResponse
         {
+            result.Instrumentation = instrumentation;
             result.AddError(message, args);
+            result.Success = false;
+            return result;
+        }
+
+        protected TResult Error<TResult, TResult2>(TResult result, TResult2 result2)
+             where TResult : SuccessResponse
+             where TResult2 : SuccessResponse
+        {
+            result.AddErrors(result2.Messages);
+            result.Success = false;
+            return result;
+        }
+
+        protected TResult Error<TResult, TResult2>(IInstrumentationPacket instrumentation, TResult result, TResult2 result2)
+             where TResult : SuccessResponse
+             where TResult2 : SuccessResponse
+        {
+            result.Instrumentation = instrumentation;
+            result.AddErrors(result2.Messages);
             result.Success = false;
             return result;
         }

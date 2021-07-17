@@ -67,6 +67,14 @@ namespace thZero.Responses
             _success = false;
             return this;
         }
+
+        public SuccessResponse AddErrors(IEnumerable<ErrorMessage> messages)
+        {
+            foreach (var message in messages)
+                _messages.Add(message);
+            _success = false;
+            return this;
+        }
         #endregion
 
         #region Public Properties
@@ -95,7 +103,7 @@ namespace thZero.Responses
         public SuccessResponse(IInstrumentationPacket instrumentation, bool success) : base(instrumentation, success) { }
 
         #region Public Properties
-        public T Data { get; set; }
+        public T Results { get; set; }
         #endregion
     }
 
