@@ -19,6 +19,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 using thZero.Instrumentation;
 
@@ -78,6 +79,15 @@ namespace thZero.Responses
         #endregion
 
         #region Public Properties
+        public string CorrelationId
+        {
+            get
+            {
+                return Instrumentation != null ? Instrumentation.Correlation.ToString() : null;
+            }
+        }
+
+        [JsonIgnore]
         public IInstrumentationPacket Instrumentation { get; set; }
 
         public IEnumerable<ErrorMessage> Messages => _messages;

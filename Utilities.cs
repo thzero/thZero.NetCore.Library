@@ -353,6 +353,17 @@ namespace thZero.Utilities
         {
             return GetAllLocal(NetworkInterfaceType.Wireless80211);
         }
+
+        public static IPAddress GetLocal()
+        {
+            IPAddress address = Network.GetAllLocalEthernet()?.FirstOrDefault();
+            if (address == null)
+                address = Network.GetAllLocalWireless()?.FirstOrDefault();
+            if (address == null)
+                throw new Exception("Invalid location IP address!");
+
+            return address;
+        }
         #endregion
     }
 
