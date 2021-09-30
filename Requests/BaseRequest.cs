@@ -19,14 +19,35 @@ limitations under the License.
 
 using System;
 
+using thZero.Instrumentation;
+
 namespace thZero.Requests
 {
     public abstract class BaseRequest
     {
-    }
+        public BaseRequest()
+        {
+        }
+
+        public BaseRequest(IInstrumentationPacket instrumentation)
+        {
+            Instrumentation = instrumentation;
+        }
+
+        #region Public Properties
+        public IInstrumentationPacket Instrumentation { get; private set; }
+        #endregion
+     }
 
     public abstract class BaseRequest<T> : BaseRequest
     {
+        public BaseRequest() : base()
+        {
+        }
+        public BaseRequest(IInstrumentationPacket instrumentation) : base(instrumentation)
+        {
+        }
+
         #region Public Properties
         public T Id { get; set; }
         #endregion
