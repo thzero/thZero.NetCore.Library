@@ -108,7 +108,8 @@ namespace thZero.Services
         /// <returns></returns>
         protected static IInstrumentationPacket GetInstrumentationPacket(IServiceProvider provider)
         {
-            return provider != null ? (IInstrumentationPacket)GetService(provider, typeof(IInstrumentationPacket)) : null;
+            //return provider != null ? (IInstrumentationPacket)GetService(provider, typeof(IInstrumentationPacket)) : null;
+            return thZero.Utilities.Instrumentation.GetInstrumentationPacket(provider);
         }
 
         /// <summary>
@@ -119,7 +120,8 @@ namespace thZero.Services
         /// <returns></returns>
         protected static object GetService(IServiceProvider provider, Type type)
         {
-            return provider?.GetService(type);
+            //return provider?.GetService(type);
+            return thZero.Utilities.Instrumentation.GetService(provider, type);
         }
 
         protected static bool IsFailure(SuccessResponse response)

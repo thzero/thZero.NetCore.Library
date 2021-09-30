@@ -29,7 +29,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
-
+using thZero.Instrumentation;
 using thZero.Services;
 
 namespace thZero.Utilities
@@ -264,6 +264,33 @@ namespace thZero.Utilities
             catch (FormatException) { }
 
             return Guid.Empty;
+        }
+        #endregion
+    }
+
+    public static class Instrumentation
+    {
+        #region Public Methods
+        /// <summary>
+        /// Get the instrumentation packet via service locator; this is an anti-pattern so use with caution.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static IInstrumentationPacket GetInstrumentationPacket(IServiceProvider provider)
+        {
+            return provider != null ? (IInstrumentationPacket)Instrumentation.GetService(provider, typeof(IInstrumentationPacket)) : null;
+        }
+
+        /// <summary>
+        /// Get a service via service locator; this is an anti-pattern so use with caution.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static object GetService(IServiceProvider provider, Type type)
+        {
+            return provider?.GetService(type);
         }
         #endregion
     }
