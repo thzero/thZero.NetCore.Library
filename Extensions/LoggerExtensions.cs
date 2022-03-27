@@ -241,6 +241,11 @@ namespace thZero
             logger?.LogInformation(LogFormat(logger, method, func));
         }
 
+        public static void LogInformation2(this ILogger logger, string method, Func<object> func, string message)
+        {
+            logger?.LogInformation(LogFormat(logger, method, func, message));
+        }
+
         public static void LogInformation2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
             logger?.LogInformation(LogFormat(logger, method, func, message, correlationId));
