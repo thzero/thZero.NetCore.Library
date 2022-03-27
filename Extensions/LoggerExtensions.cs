@@ -27,13 +27,13 @@ namespace thZero
     public static class LoggerExtensions
     {
         #region Public Methods
-        public static string LogFormat(this ILogger logger, string method, string message)
+        public static string LogFormat(this ILogger _, string method, string message)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
             return string.Concat(method, message);
         }
-        public static string LogFormat(this ILogger logger, string method, string message, string correlationId)
+        public static string LogFormat(this ILogger _, string method, string message, string correlationId)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
@@ -45,19 +45,19 @@ namespace thZero
             return log;
         }
 
-        public static string LogFormat(this ILogger logger, string method, Func<object> func)
+        public static string LogFormat(this ILogger _, string method, Func<object> func)
         {
             return string.Concat(method, SeparatorColon, (func != null ? func() : null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, Func<object> func, string message)
+        public static string LogFormat(this ILogger _, string method, Func<object> func, string message)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
             return string.Concat(method, message, (func != null ? func() : null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, Func<object> func, string message, string correlationId)
+        public static string LogFormat(this ILogger _, string method, Func<object> func, string message, string correlationId)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
@@ -69,19 +69,19 @@ namespace thZero
             return log;
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, object value)
+        public static string LogFormat(this ILogger _, string method, string attribute, object value)
         {
             return string.Concat(method, SeparatorColon, attribute, SeparatorColon, (value != null ? value.ToString() : Null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, object value, string message)
+        public static string LogFormat(this ILogger _, string method, string attribute, object value, string message)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
             return string.Concat(method, message, SeparatorColon, attribute, SeparatorColon, (value != null ? value.ToString() : Null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, object value, string message, string correlationId)
+        public static string LogFormat(this ILogger _, string method, string attribute, object value, string message, string correlationId)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
@@ -93,19 +93,19 @@ namespace thZero
             return log;
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, Func<object> func)
+        public static string LogFormat(this ILogger _, string method, string attribute, Func<object> func)
         {
             return string.Concat(method, SeparatorColon, attribute, SeparatorColon, (func != null ? func() : null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, Func<object> func, string message)
+        public static string LogFormat(this ILogger _, string method, string attribute, Func<object> func, string message)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
             return string.Concat(method, message, SeparatorColon, attribute, SeparatorColon, (func != null ? func() : null));
         }
 
-        public static string LogFormat(this ILogger logger, string method, string attribute, Func<object> func, string message, string correlationId)
+        public static string LogFormat(this ILogger _, string method, string attribute, Func<object> func, string message, string correlationId)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
@@ -117,19 +117,19 @@ namespace thZero
             return log;
         }
 
-        public static string LogFormat(this ILogger logger, string method, Exception ex)
+        public static string LogFormat(this ILogger _, string method, Exception ex)
         {
             return string.Concat(method, SeparatorColon, FormatException(ex));
         }
 
-        public static string LogFormat(this ILogger logger, string method, Exception ex, string message)
+        public static string LogFormat(this ILogger _, string method, Exception ex, string message)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
             return string.Concat(method, message, SeparatorComma, FormatException(ex));
         }
 
-        public static string LogFormat(this ILogger logger, string method, Exception ex, string message, string correlationId)
+        public static string LogFormat(this ILogger _, string method, Exception ex, string message, string correlationId)
         {
             if (!String.IsNullOrEmpty(message))
                 message = string.Concat(SeparatorColon, message);
@@ -143,197 +143,275 @@ namespace thZero
 
         public static void LogDebug2(this ILogger logger, string method, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, object value)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, value));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, object value, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, value, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, object value, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, value, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogDebug2(this ILogger logger, string method, string attribute, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogDebug(LogFormat(logger, method, attribute, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Exception ex)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogError(LogFormat(logger, method, ex));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Exception ex, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogError(LogFormat(logger, method, ex, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Exception ex, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogError(LogFormat(logger, method, ex, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogError(LogFormat(logger, method, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogError(LogFormat(logger, method, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogError2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogInformation2(this ILogger logger, string method, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogInformation(LogFormat(logger, method, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogInformation2(this ILogger logger, string method, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogInformation(LogFormat(logger, method, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogInformation2(this ILogger logger, string method, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogInformation(LogFormat(logger, method, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogInformation2(this ILogger logger, string method, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogInformation(LogFormat(logger, method, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogInformation2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogInformation(LogFormat(logger, method, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, object value)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, value));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, object value, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, value, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, object value, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, value, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogTrace2(this ILogger logger, string method, string attribute, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogTrace(LogFormat(logger, method, attribute, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Exception ex)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, ex));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Exception ex, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, ex, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Exception ex, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, ex, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Func<object> func)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Func<object> func, string message)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func, message));
+#pragma warning restore CA2254 // Template should be a static expression
         }
 
         public static void LogWarning2(this ILogger logger, string method, Func<object> func, string message, string correlationId)
         {
+#pragma warning disable CA2254 // Template should be a static expression
             logger?.LogWarning(LogFormat(logger, method, func, message, correlationId));
+#pragma warning restore CA2254 // Template should be a static expression
         }
         #endregion
 
